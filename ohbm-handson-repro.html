@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title> Reproducible Workflows </title>
+  <meta name="description" content=" ohbm-hackathon-2021-hands-on ">
+  <meta name="author" content=" Stephan Heunis & Şeyma Bayrak ">
+
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="css/main.css" id="theme">
+  <script src="js/printpdf.js"></script>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- FRONT PAGE -->
+
+<section>
+    <br>
+    <h2><small>OHBM Hackathon 2021 - TrainTrack<br>🧠💻</small><br>Reproducible Workflows<br  /><br  /></h2>
+
+  <div style="margin-top:1em;text-align:center">
+  <table style="border: none;">
+  <tr>
+	<td>Stephan Heunis ("Atlantis" slot)
+	  <br><small>
+		<a href="https://twitter.com/fMRwhy" target="_blank">
+		  <img data-src="pics/twitter.png" style="height:30px;margin:0px" />
+		  @fMRwhy</a></small> <small>
+            <a href="https://github.com/jsheunis" target="_blank">
+              <img data-src="pics/GitHub.png" style="height:30px;margin:0px" />
+              jsheunis</a></small>
+          
+          <small><a href="http://psychoinformatics.de" target="_blank">Psychoinformatics lab</a><br>
+            Institute of Neuroscience and Medicine, Brain &amp; Behavior (INM-7)<br>
+          </small><br>
+        </td>
+    <td><img style="height:100px;margin-right:1px" data-src="pics/fzj_logo.svg" />
+	  <br></td>
+  </tr>
+  <tr>
+	<td>Şeyma Bayrak ("Rising Sun" slot)
+	  <br><small>
+		<a href="https://github.com/sheyma" target="_blank">
+		  <img data-src="pics/GitHub.png" style="height:30px;margin:0px" />
+		  sheyma</a></small>
+          <br>
+          <small><a href="https://www.cbs.mpg.de/independent-research-groups/cognitive-neurogenetics" target="_blank">Otto Hahn Group Cognitive Neurogenetics</a>
+          </small><br>
+        </td>
+    <td><img style="height:120px;" data-src="pics/MPICBS-Logo-color-RGB-en.svg" />
+	  <br></td>
+  </tr>
+  </table>
+  </div>
+  <br>
+  <div>
+      <small>Slides:</small>
+      <br>
+      <a href="https://tinyurl.com/ohbm-2021-handson-repro"><small>https://tinyurl.com/ohbm-2021-handson-repro</small></a>
+
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section>
+    <h2>Agenda</h2>
+    
+    <ul>
+        <li>Overview <em>(8 min)</em></li>
+        <li>Practical aspects <em>(7 min)</em></li>
+        <li>Step 1: share data and code <em>(30 min)</em></li>
+        <li>Step 2: software environment and requirements <em>(30 min)</em></li>
+        <li><em>-- BREAK (30 min) --</em></li>
+        <li>Step 3: cloudy containers <em>(30 min)</em></li>
+        <li>Step 4: interplanetary sci-comm <em>(20 min)</em></li>
+        <li>Step 5: reproducible data management <em>(20 min)</em></li>
+        <li>More tools <em>(5 min)</em></li>
+        
+
+    </ul>
+    <br><br>
+    <em>Total running time: 3 hours</em>
+
+</section>
+
+<!-- OVERVIEW -->
+<section>
+    <section>
+        <h2>Overview</h2>
+
+        <p>You've just published a paper that calculated the cortical thickness 
+            for a group of research participants. You've run some statistical tests
+            and visualized the results.
+        </p>
+
+        <table>
+            <tr>
+                <td><img src="pics/handson_fig1.png" height="500"></td>
+                <td><img src="pics/handson_figs234.png" height="500"></td>
+            </tr>
+        </table>
+
+    </section>
+
+    <section>
+        <h2>Overview</h2>
+
+        <p>Soon after, a researcher in your field sends you an email:
+        </p>
+        <img src="pics/handson_email1.png">
+
+    </section>
+
+    <section>
+        <h2>Overview</h2>
+        <p>Our goal for this hands-on session is to guide you through the use of
+            several tools for creating a reproducible workflow so that you can go...
+        </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="fragment fade-in">
+                        <p >from reacting like this:</p>
+                        <iframe src="https://gifer.com/embed/CfNy" width=480 height=392.170 frameBorder="0" allowFullScreen></iframe>
+                    </div>
+                </td>
+                <td>
+                    <div class="fragment fade-in">
+                        <p >to reacting like this:</p>
+                        <iframe src="https://gifer.com/embed/2I0" width=480 height=390 frameBorder="0" allowFullScreen></iframe>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        
+    </section>
+
+    <section>
+        <h2>Overview</h2>
+        <p>There are many routes to follow, and many tools to help you on your way.
+            We are going to take a step-wise, "Galaxy brain" approach:
+        </p>
+        <img src="pics/handson_galaxy_brain.jpeg">
+    </section>
+
+    <section>
+        <h2>Overview</h2>
+        <p>By the end of this session, you should be able to do the following STEPS:
+        </p>
+        <ol>
+            <li class="fragment fade-in">
+                Set up a `requirements.txt` file that specifies package requirements
+            </li>
+            <li class="fragment fade-in">
+                Specify and set up a virtual environment to install requirements
+            </li>
+            <li class="fragment fade-in">
+                Share code, installation, and running instructions via GitHub
+            </li>
+            <li class="fragment fade-in">
+                Transform your code into a Jupyter notebook
+            </li>
+            <li class="fragment fade-in">
+                Set up your code repository to run in the cloud with Binder
+            </li>
+            <li class="fragment fade-in">
+                Understand how containers can play a role in this context
+            </li>
+            <li class="fragment fade-in">
+                Understand the benefits of data management with DataLad
+            </li>
+        </ol>
+        <br><br>
+        <div class="fragment fade-in">Questions? 💬 </div>    
+    </section>
+</section>
+
+
+<!-- HOUSE RULES -->
+<section>
+    <section>
+        <h2>Practical aspects</h2>
+        <ul>
+            <li>
+                You can follow along without having any specific software or tools installed on your machine.
+            </li>
+            <li>
+                You just need a good internet connection and your browser.
+            </li>
+            <li>
+                However, if you have the required software/packages installed locally, you are welcome (and encouraged) to run the tasks on your system (we'll provide instructions).
+            </li>
+            <li>
+                We use <a href="https://mybinder.org/" target="_blank">
+                            <img data-src="pics/handson_binderlogo.png" style="height:30px;margin:0px" />
+                            myBinder</a>
+                as a cloud-based tool to demonstrate and run some of the tasks in the workshop, but we'll teach you all about it.
+            </li>
+        </ul>
+    </section>
+    
+    <section>
+        <h2>Practical aspects</h2>
+        <ul>
+            <li>
+                Hands-on!
+                <ul>
+                    <li>You will be doing a lot of tasks yourself (together with all of us)</li>
+                    <li>The laptop icon (💻) indicates a task for you</li>
+                    <li>The eyes icon (👀) means we'll demonstrate something</li>
+                    <li>The speech bubble icon (💬 ) indicates time for discussion/opinions</li>
+                    <li>Feel free to ask questions at any time (via chat, voice, or video)</li>
+                    <li>Live polls, please participate!</li>
+                </ul>
+            </li>
+            <li>
+                Useful links:
+                <ul>
+                    <li>🔗 <a href="https://github.com/ohbm/handson-2021-reproducible-workflows">GitHub repository, with data and code for analysis</a></li>
+                    <li>🔗 <a href="https://github.com/MICA-MNI/micaopen/tree/master/surfstat/surfstat_tutorial">Data source</a></li>
+                    <li>🔗 <a href="https://tinyurl.com/ohbm-2021-handson-repro">These slides</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Practical aspects</h2>
+        <h3>Who are you?</h3>
+        <a href="http://etc.ch/AHNN" target="_blank">http://etc.ch/AHNN</a>
+        <br><br>
+        <a href="http://etc.ch/AHNN" target="_blank"><img data-src="pics/directpollqr.png" /></a>
+    </section>    
+
+    <section>
+        <h2>Practical aspects</h2>
+        <img src="pics/handson_allofthethings.jpeg">
+    </section>
+</section>
+
+
+
+<!-- Step 1: share data and code -->
+<section>
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        Why don't we just send them the data and code "via" a download link?
+        <br><br>
+        <img src="pics/handson_email2.png">
+
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        Why don't we just send them the data and code "via" a download link?
+        <br><br>
+        
+        💻 Try it yourself:<br>
+        <ul>
+            <li><a href="https://filesender.surf.nl/?s=download&token=ec7d532a-904c-4e48-a8e4-690d19568df0">paper_data_and_code.zip</a></li>
+            <li>💬 What can go wrong?</li>
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        💬 Why don't we just send them the data and code "via" a download link? 
+        <br><br>
+        <ul>
+            <li class="fragment fade-in">
+                You have to create a link and send an email every time someone requests it
+            </li>
+            <li class="fragment fade-in">
+                There are no instructions included for running the analysis
+            </li>
+            <li class="fragment fade-in">
+                The person might not have the correct software or package versions installed
+            </li>
+            <li class="fragment fade-in">
+                They could perhaps figure out from the code which packages are required,
+                but installing them might interfere with their existing environment, which
+                might break things down the line.
+            </li>
+        </ul>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        So they tried running the script on their machine, and then...
+        <br><br>
+        <img src="pics/handson_email3.png">
+        <br>
+        💬 What went wrong? What should we have done?
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        To prevent this issue (or similar issues), while still allowing others to run
+        the code on their machines, we need to share:
+        <br><br>
+
+        <table>
+            <tr>
+                <td>1.</td>
+                <td>The required packages</td>
+                <td><strong>requirements.txt</strong></td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>The Python version</td>
+                <td><strong>virtual environment</strong></td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Instructions for how to use these to successfully run the script</td>
+                <td><strong>README</strong></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Data and code and all of the above in an accessible location</td>
+                <td><strong>GitHub</strong></td>
+            </tr>
+        </table>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        We'll start with adding our data and code to Github:
+        <br><br>
+        <h3>In your browser (👀 💻)</h3>
+
+        <ol>
+            <li><a href="https://github.com/join" target="_blank">Create a GitHub account</a> if you don't already have one</li>
+            <li>Create a new repository ("ohbm-handson-test") with a README and MIT License</li>
+            <li>Upload the <code>code</code> and <code>data</code> directories to your repository</li>
+            <ul>
+                <li>You can only upload max 100 files at once, so you will have to upload the data files in steps</li>
+                <li>Take care to keep the correct directory structure</li>
+            </ul>
+            <li>Commit (i.e. save) these uploads</li>
+        </ol>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        We'll start with adding our data and code to Github:
+        <br><br>
+        <h3>From the command line (💻)</h3>
+
+        <ol>
+            <li><a href="https://github.com/join" target="_blank">Create a GitHub account</a> if you don't already have one</li>
+            <li>Create a new repository ("ohbm-handson-test") with a README and MIT License</li>
+            <li>Copy the repository URL</li>
+            <li>Clone the repository to your machine, and navigate to it</li>
+            <li>Copy the <code>code</code> and <code>data</code> directories to your repository</li>
+            <li>Commit the changes to git</li>
+            <li>Push the changes to GitHub</li>
+        </ol>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        We'll start with adding our data and code to Github:
+        <br><br>
+        <h3>From the command line (💻)</h3>
+
+        <pre>
+            <code data-trim data-line-numbers>
+                #!/bin/bash
+
+                ROOTDIR=[where-you-want-to-save-the-repo]
+                REPOURL=[insert-your-repo-URL]
+                REPONAME=[insert-your-repo-name]
+                CONTENTDIR=[insert-path-to-paper_data_and_code-directory]
+
+                cd $ROOTDIR
+                git clone $REPOURL
+                cd $REPONAME
+                
+                cp -R $CONTENTDIR/* .
+                git add --all
+                git commit -m "add data and code to repo"
+                git push origin main
+            </code>
+        </pre>
+  
+    </section>
+
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+
+        Next, we'll add instructions to the README:
+        <br><br>
+        <h3>In your browser (👀 💻)</h3>
+
+        <ol>
+            <li>Click on the edit button (🖊️) next to "README" on the repo's main page</li>
+            <li>Write in your own words: the content of the repo and how to run the analysis</li>
+            <ul>
+                <li>Editing is done in Markdown format (<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">cheat sheet</a>)</li>
+                <li>You can "Preview" your changes while editing</li>
+                <li>If you don't want to use your own words, use the content from <a href="https://github.com/ohbm/handson-2021-reproducible-workflows/blob/main/README.md" target="_blank">our example</a></li>
+            </ul>
+            <li>Commit (i.e. save) these changes</li>
+        </ol>
+  
+    </section>
+
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+        
+        Next, we'll add instructions to the README:
+        <br><br>
+
+        <h3>From the command line (💻)</h3>
+
+        <ol>
+            <li>Open the "README.md" file in your favourite text editor</li>
+            <li>Write in your own words: the content of the repo and how to run the analysis</li>
+            <ul>
+                <li>Editing is done in Markdown format (<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">cheat sheet</a>)</li>
+                <li>If you don't want to use your own words, use the content from <a href="https://github.com/ohbm/handson-2021-reproducible-workflows/blob/main/README.md" target="_blank">our example</a></li>
+            </ul>
+            <li>Commit the changes to <code>git</code></li>
+            <li>Push the changes to GitHub</li>
+        </ol>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+        
+        Next, we'll add instructions to the README:
+        <br><br>
+
+        <h3>From the command line (💻)</h3>
+
+        <pre>
+            <code data-trim data-line-numbers>
+                #!/bin/bash
+                # After editing and saving the README file
+                # Make sure you are located in the repo's root directory
+
+                git add README.md
+                git commit -m "add description to readme"
+                git push origin main
+            </code>
+        </pre>
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+        <p>
+        We have not yet specified the software or package requirements and we have not explained how to set
+        up a virtual environment. We'll address these as our next main step in the hands-on session.
+        </p>
+        <br>
+        <table>
+            <tr>
+                <td>1.</td>
+                <td>The required packages</td>
+                <td><strong>requirements.txt</strong></td>
+                <td> ?</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>The Python version</td>
+                <td><strong>virtual environment</strong></td>
+                <td> ?</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Instructions for how to use these to successfully run the script</td>
+                <td><strong>README</strong></td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Data and code and all of the above in an accessible location</td>
+                <td><strong>GitHub</strong></td>
+                <td>✅</td>
+            </tr>
+        </table>
+        
+        <br>
+
+
+        Well done on achieving your first milestone towards creating a reproducible workflow! 🥳🥳🥳
+  
+    </section>
+
+    <section>
+        <h2>Step 1: share data and code</h2>
+        "Galaxy brain" update:
+        <br><br>
+        <img src="pics/handson_galaxy_brain1.jpeg">
+    </section>
+
+</section>
+
+
+<!-- Step 2: software environment and package requirements -->
+<section>
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        After sharing the news about the public GitHub repo with our colleague, we get the following reply:
+        <br><br>
+
+        <img src="pics/handson_email4.png" height="650">
+
+        <br><br>
+        
+        Now we'll focus on requirements and virtual environments
+        
+
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        <h3>Introducing requirements.txt</h3>
+
+        <ul>
+            <li>Single file to capture required Python packages</li>
+            <li>Makes installation straight-forward with <code>pip</code>:</li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    pip install -r requirements.txt
+                </code>
+            </pre>
+            <li>In the file, you can specify the required packages (check script) and versions:</li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    matplotlib==3.2.2
+                    numpy>=1.16.5
+                    pandas
+                    nibabel
+                    nilearn>=0.7.1
+                    sklearn
+                    brainspace
+                </code>
+            </pre>
+        </ul>
+
+        <br>
+
+        💻 Now, create your own <code>requirements.txt</code> file and add it to your GitHub repo 
+        (either in your browser or via <code>git</code>).
+
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        <h3>Introducing requirements.txt</h3>
+
+        <div style="text-align:justify">
+            NOTE: not all packages/tools required for an analysis are necessarily
+            Python packages, or if they are they might not be available on the
+            <a href="https://pypi.org/">Python Package Index (PyPI)</a>. This means
+            that installing everything with <code>pip</code> and a <code>requirements.txt</code>
+            file might not be sufficient:
+        </div>
+        <br>
+        <ul>
+            <li>Check whether some packages/tools might have to be installed differently:</li>
+            <ul>
+                <li><a href="https://wiki.debian.org/Apt">APT</a>: for managing packages (retrieval, configuration and installation) on Unix-like computer systems</li>
+                <li><a href="https://docs.conda.io/en/latest/">conda</a>: Package, dependency and environment management for any language running on Windows, macOS and Linux</li>
+            </ul>
+            <li>Add extra installation instructions to README</li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    git clone https://github.com/MICA-MNI/BrainStat.git
+                    cd BrainStat
+                    python3 setup.py build
+                    python3 setup.py install
+                </code>
+            </pre>
+        </ul>
+
+        <br>
+
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+        <h3>Introducing Virtual Enviroments</h3>
+        <table>
+            <tr>
+                <td style="width: 40%;">
+                    <ul>
+                        <li><code>requirements.txt</code> helps a lot, but what if the colleague already has some of these packages installed? 💬</li>
+                        <li>Installing new packages or existing packages with different versions can interfere with their local Python setup, and cause errors.</li>
+                    </ul>
+                </td>
+                <td>
+                    <img src="pics/handson_python_environment.png" width="600">
+                    <imgcredit>XKCD</imgcredit>
+                </td>
+            </tr>
+        </table>
+        
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        <h3>Introducing Virtual Enviroments</h3>
+
+        <div style="text-align:justify">
+            It would be great if colleagues could install our package requirements in a <strong>clean and isolated</strong> environment ==> virtual environments!
+        </div>
+        
+        <ul>
+            <li><a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a></li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    #!/bin/bash
+                    pip install virtualenv #install the package
+                    virtualenv --python=python3 mypythonenv #create a new virtual environment
+                    source mypythonenv/bin/activate #activate the virtual environment
+                    # now install your packages with pip and do the analysis
+                    deactivate #deactivate the virtual environment
+                </code>
+            </pre>
+            <li><a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a></li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    #!/bin/bash
+                    # install miniconda using install files via link
+                    conda create -n mypythonenv python=3.6
+                    conda activate mypythonenv
+                    # now install your packages with conda and/or pip and do the analysis
+                    conda deactivate #deactivate the virtual environment
+                </code>
+            </pre>
+        </ul>
+        
+    </section>
+
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        <h3>Introducing Virtual Enviroments</h3>
+
+        <div style="text-align:justify">
+            💻 So let's tell our colleague what to do next. Update your repo's README
+            to include instructions for setting up a virtual environment and installing
+            all required packages in this environment. Include:
+        </div>
+        <br>
+        <ul>
+            <li>An intro sentence to mention that a virtual environment can be used to run the code</li>
+            <li>Instructions on how to install the virtual environment manager</li>
+            <li>Instructions on how to create and activate the virtual environment</li>
+            <li>Instructions on how to install all packages using <code>requirements.txt</code></li>
+            <li>Lastly, instructions on how to run the analysis (if not already included)</li>
+        </ul>
+        
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        Congrats! <br>You've achieved Level 2 of being a Reproducible Workflows Magician!
+
+        <br><br>
+        <table>
+            <tr>
+                <td>1.</td>
+                <td>The required packages</td>
+                <td><strong>requirements.txt</strong></td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>The Python version</td>
+                <td><strong>virtual environment</strong></td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Instructions for how to use these to successfully run the script</td>
+                <td><strong>README</strong></td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Data and code and all of the above in an accessible location</td>
+                <td><strong>GitHub</strong></td>
+                <td>✅</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        So we send the update to our colleague:
+
+        <br><br>
+
+        <img src="pics/handson_email5.png">
+        
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+        "Galaxy brain" update:
+        <br><br>
+        <img src="pics/handson_galaxy_brain2.jpeg">
+    </section>
+
+    <section>
+        <h2>Step 2: software environment and requirements</h2>
+
+        Well done!!
+
+        <br><br>
+
+        <iframe src="https://gifer.com/embed/5RK" width=600 height=400 frameBorder="0" allowFullScreen></iframe>
+        <imgcredit>Gifer.com</imgcredit>
+        
+    </section>
+
+    
+
+    <!-- <div class="tenor-gif-embed" data-postid="16652721" data-share-method="host" data-width="100%" data-aspect-ratio="0.9397590361445783"><a href="https://tenor.com/view/oh-yeah-cute-dance-you-got-this-gif-16652721">Oh Yeah Cute GIF</a> from <a href="https://tenor.com/search/ohyeah-gifs">Ohyeah GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+
+    <!-- <iframe src="https://gifer.com/embed/2IC" width=480 height=269.760 frameBorder="0" allowFullScreen></iframe><p><a href="https://gifer.com">via GIFER</a></p> -->
+
+</section>
+
+
+<!-- Step 3: cloudy containers -->
+
+<section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+
+        So you decide to chill out now that everything should be working, right? Unfortunately,
+        our feeling of accomplishment is short-lived, because Professor Important
+        Dude is back with another question..
+
+        <br><br>
+
+        <img src="pics/handson_email6.png">
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+
+        And then you realise... many things. At the same time:
+
+        <br><br>
+        <ul>
+            <li>Damn, you forgot about the OpenGL/LibGL requirement</li>
+            <li>You really don't want to have another Zoom call in this pandemic</li>
+            <li>You absolutely don't want to have multiple Zoom calls forever</li>
+        </ul>
+        <br><br>
+        So you cry out in desperation: <strong>Why can't it just work on their machines?!</strong>
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+
+        <img src="pics/handson_itworksonmymachine.jpeg" width="600">
+        <imgcredit>Reddit</imgcredit>
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        <h3>Introducing containers</h3>
+        <ul>
+            <li>As we've seen, sharing code and data and even the virtual environment setup may not be enough for reproducibility</li>
+            <li>Also, even for moderately complex projects, the size of the software dependency stack can be </li>
+            <li>An alternative is to take a snapshot of the whole computational environment, including operating system and all software dependencies, to allow reproducibility</li>
+            <li>Useful resources:</li>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=EnJ7qX9fkcU">What is a container? (video)</a></li>
+                <li><a href="https://www.docker.com/">Docker (software for working with containers)</a></li>
+                <li><a href="https://sylabs.io/guides/2.6/user-guide/introduction.html#">Singularity (software for working with containers)</a></li>
+                <li><a href="https://github.com/rainsworth/osip2019-containerisation-workshop">Accessible tutorial on using Docker and Singularity</a></li>
+            </ul>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        <h3>Introducing containers</h3>
+        <img src="pics/handson_vmgrid.png" width="900">
+        <imgcredit>Rachael Ainsworth</imgcredit>
+        <br>
+        But we don't want to have to explain how to install <em>yet another</em> tool.
+        Ideally, we can run everything in the cloud...
+        
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        <h3>Introducing Binder</h3>
+
+        <img src="pics/handson_docker_binder.jpeg" height="650">
+        <imgcredit>Scriberia</imgcredit>
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        <div style="text-align: justify;">
+            💻 In this hans-on session, we will follow the steps to make our data, code, and computational environment accessible in Binder:
+        </div>
+        <br>
+
+        <ol>
+            <li>Code and data in a public GitHub repository ✅</li>
+            <li>Specify environment configuration:</li>
+            <ul>
+                <li><code>environment.yml</code> for conda ❓</li>
+                <li><code>requirements.txt</code> for Python/PIP ✅</li>
+                <li><code>apt.txt</code> for Unix-based software ❓</li>
+            </ul>
+            <li>Add any extra tasks to <code>postBuild</code> ❓</li>
+            <li><a href="https://mybinder.org/">Generate a link to a Binder environment ❓</a></li>
+            <li>Add the Binder link to your repo's README ❓</li>
+        </ol>
+        
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        <ul>
+            <li>We already have a <code>requirements.txt</code> file with most packages</li>
+            <li>💻 Remember the LibGL issue? We can let Binder install that with <code>apt.txt</code>:</li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    libgl1-mesa-dev
+                    xvfb
+                </code>
+            </pre>
+            <li>💻 And remember that we have separate instructions for installing BrainStat?
+                We can add those lines of code to <code>postBuild</code>:
+            </li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    #!/bin/bash
+                    git clone https://github.com/MICA-MNI/BrainStat.git
+                    cd BrainStat
+                    python3 setup.py build
+                    python3 setup.py install
+                    cd ..
+                    export DISPLAY=:99.0
+                    which Xvfb
+                    Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+                    sleep 3
+                    exec "$@"
+                </code>
+            </pre>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        Status update:
+        <br><br>
+
+        <ol>
+            <li>Code and data in a public GitHub repository ✅</li>
+            <li>Specify environment configuration ✅</li>
+            <ul>
+                <li><em><small>NOTE: using <code>environment.yml</code> instead of <code>requirements.txt</code> to specify the configuration is also possible.
+                    It all depends on which packages are available via which distribution service. For an example of setting up our repository using
+                    <code>environment.yml</code>, see the <a href="https://github.com/ohbm/handson-2021-reproducible-workflows/tree/conda-env">conda-env branch</a> of the repo. For a variety of options for configuration files
+                    see the <a href="https://mybinder.readthedocs.io/en/latest/using/config_files.html">Binder documentation</a>.</small></em>
+                </li>
+            </ul>
+            <li>Add any extra tasks to <code>postBuild</code> ✅</li>
+            <li><a href="https://mybinder.org/">Generate a link to a Binder environment ❓</a></li>
+            <li>Add the Binder link to your repo's README ❓</li>
+        </ol>
+        <br><br>
+        💻 Now we still have to "Binderize" everything!
+        
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        💻👀 <a href="https://mybinder.org/">mybinder.org</a>
+        <br>
+        <img src="pics/handson_binderize.png" height="750">
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        Status update:
+        <br><br>
+
+        <ol>
+            <li>Code and data in a public GitHub repository ✅</li>
+            <li>Specify environment configuration ✅</li>
+            <li>Add any extra tasks to <code>postBuild</code> ✅</li>
+            <li><a href="https://mybinder.org/">Generate a link to a Binder environment ✅</a></li>
+            <li>💻 Add the Binder link to your repo's README</li>
+            <ul>
+                <li>While the Binder is building, add the Binder image and link to your README</li>
+                <li>Once the Binder build is successful, it should open a Jupyter environment</li>
+                <li>Now we have a complete environment for reproducing your results IN THE CLOUD!!!</li>
+            </ul>
+        </ol>
+
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        We can't hold our excitement, so we send a quick email to notify the colleague:
+        <br><br>
+        <img src="pics/handson_email7.png">
+    </section>
+
+    <section>
+        <h2>Step 3: cloudy containers</h2>
+        "Galaxy brain" update:
+        <br><br>
+        <img src="pics/handson_galaxy_brain3.jpeg">
+    </section>
+
+
+
+</section>
+
+<section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        So, you're busy (rightfully) thinking that you have done a great job of making your work
+        more reproducible, but then ... it looks like we spoke too soon. Our VIP friend has another request...
+        <br><br>
+        <img src="pics/handson_email8.png">
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        
+        So firstly, it works for them!!! (Always try and celebrate the wins in academia, however big or small.)
+
+        <br><br>
+
+        Secondly, let's take a deeper look into this <strong>notebook</strong> thing.
+        <br>
+        And what's with <strong>Jupiter</strong>?
+        <br><br>
+        <img src="pics/handson_jupiter.png" width="600">
+        <imgcredit>NASA SpacePlace</imgcredit>
+
+        
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+
+        <img src="pics/jupyter_logo.png" height="100">
+        <div style="text-align: justify;">
+            <em>
+                "The <a href="https://jupyter.org/">Jupyter Notebook</a> is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more."
+            </em>
+        </div>
+        <img src="pics/handson_jupyterpreview.png" width="600">
+        <imgcredit>Jupyter.org</imgcredit>
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+
+        <h3>Jupyter notebooks:</h3>
+        <ul>
+            <li>Can be installed (amongst other methods) with <code>conda</code> and <code>pip</code></li>
+            <pre>
+                <code data-trim data-line-numbers>
+                    conda install -c conda-forge notebook
+                    pip install notebook
+                </code>
+            </pre>
+            <li>Can work with kernels for Python, R, Octave, Julia and many more!</li>
+            <li>Form part of the bigger Jupyter ecosystem (including <a href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> and <a href="https://jupyterhub.readthedocs.io/en/stable/">JupyterHub</a>)</li>
+            <li>If on a public repository, can be viewed statically with <a href="https://nbviewer.jupyter.org/">nbviewer</a></li>
+            <li><strong>If on Binder, can be interacted with and edited in the cloud</strong></li>
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        <div style="text-align: justify;">
+            💻 To make our work more accessible and intuitive, we will create a Jupyter Notebook translated from 
+        the current Python script, by dividing it into code and Markdown cells, and running these to
+        generate the visualisation outputs:
+        </div>
+        <br>
+
+        <ol>
+            <li>Open the Binder link</li>
+            <li>Click on <em>New > Python 3</em></li>
+            <li>Use the editing funcitons to add/edit/move cells</li>
+            <ul>
+                <li>Use Markdown cells for narrative content (as in the README)</li>
+                <li>Use code cells for Python code</li>
+            </ul>
+            <li>👀 Have a look at <a href="https://github.com/ohbm/handson-2021-reproducible-workflows/blob/main/code/analysis_01.ipynb">this static example</a> for guidance</li>
+        </ol>
+        
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        <h3>Show and tell! 💻👀💬</h3>
+        <img src="pics/handson_bindershow.png" width="600">
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        This is what you have achieved!
+        <br>
+        <img src="pics/handson_binder_comic.png" width="1000">
+        <imgcredit>Juliette Taka, Logilab and the OpenDreamKit project</imgcredit>
+    </section>
+
+    <section>
+        <h2>STEP 4: Interplanetary sci-comm</h2>
+        "Galaxy brain" update:
+        <br><br>
+        <img src="pics/handson_galaxy_brain4.jpeg">
+    </section>
+
+</section>
+
+<section>
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        <div style="text-align: justify;">
+            In many cases we will work with large datasets and multiple analysis pipelines will
+            form part of the full research pipeline,
+            each with their own list of software and environment requirements.
+            Managing the full reproducibility of such workflows
+            can be challenging (or impossible) without the right tools that allow:
+            <br>
+        </div>
+        <ol>
+            <li>Data version control</li>
+            <li>Provenance capture</li>
+        </ol>
+
+        <br><br>
+
+        <h2>Introducing <img src="pics/datalad_logo_wide.svg"></h2>
+
+    </section>
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+
+        <h2> <img src="pics/datalad_logo_wide.svg"> in brief</h2>
+        <ul>
+            <li>A command-line tool with Python API</li>
+            <li>Build on top of <a href="https://git-scm.com/" target="_blank">Git</a>
+                and <a href="https://git-annex.branchable.com/" target="_blank">Git-annex</a></li>
+            <dt><li>Allows...</li></dt>
+            <dd>... version-controlling arbitrarily large content,</dd>
+            <dd>... easily sharing and obtaining data (note: no data hosting!),</dd>
+            <dd>... (computationally) reproducible data analysis,
+            <dd>... and <i>much</i> more </dd>
+            <li>Completely domain-agnostic</li>
+            <li>Available for all major operating systems (Linux, macOS/OSX, Windows):
+                <a href="http://handbook.datalad.org/en/latest/intro/installation.html">installation instructions</a>
+            </li>
+            <li>Detailed documentation: <a href="http://handbook.datalad.org/en/latest/index.html">DataLad Handbook</a></li>
+                <br>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <h2>STEP 5: Reproducible data management</h2>
+
+        DataLad version control helps you get...
+
+        <table>
+            <tr>
+                <td>From this: <img src="pics/finaldoc_comic.gif" height="700"></td>
+                <td>To this: <img src="pics/gitflow.png" height="700"></td>
+            </tr>
+        </table>
+        
+    
+        <imgcredit>www.phdcomics.com; www.linode.com</imgcredit>
+        
+    </section>
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        <h3>DataLad SUMMARY - Nesting and Consumption</h3>
+        <ol>
+            <li>A DataLad dataset is a folder/directory with files</li>
+            <li>Subdirectories and their content can be part of the <strong>superdataset</strong>,
+                or they can be DataLad datasets themselves (<strong>nested subdatasets</strong>)
+            </li>
+        </ol>
+        <br><br>
+
+        <img src="pics/virtual_dstree_dl101.svg" height="500">
+
+
+    </section>
+
+    
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        <h3>DataLad SUMMARY - Nesting and Consumption</h3>
+        
+        <ul>
+            <li>A modular structure makes individual components (with their respective provenance) reusable.</li>
+            <li>Nesting can flexibly link all components and allows recursive operations across dataset boundaries</li>
+            <li>Read all about this in the <a href="http://handbook.datalad.org/en/latest/basics/101-127-yoda.html" target="_blank">chapter on YODA principles</a></li>
+        </ul>
+        <img src="pics/linkage_subds.png" height="400">
+
+
+    </section>
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        <h3>DataLad SUMMARY - Computational reproducibility</h3>
+
+        <ul>
+            <li>Code may produce different results or fail with different software</li>
+            <li>Datasets can store & share software environments and execute code inside of the software container</li>
+            <li>DataLad extension: <code>datalad-container</code></li>
+        </ul>
+    
+        <p><code>datalad-containers run</code></p>
+        <img src="pics/containers-run.svg" height="400">
+    </section>
+
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        <h3>DataLad SUMMARY - Getting started</h3>
+        
+
+        <dl>
+            <dt>Read <a href="https://handbook.datalad.org"> the DataLad handbook</a></dt>
+            <dd>An interactive, hands-on crash-course (free and open source)</dd>
+            <dt>Check out or use public DataLad datasets, e.g., from OpenNeuro</dt>
+            <dd>
+                <pre><code data-trim data-line-numbers style="max-height:none">
+                    $ datalad clone ///openneuro/ds000001
+                    [INFO   ] Cloning http://datasets.datalad.org/openneuro/ds000001 [1 other candidates] into '/tmp/ds000001'
+                    [INFO   ] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
+                    | 		datalad siblings -d "/tmp/ds000001" enable -s s3-PRIVATE
+                    install(ok): /tmp/ds000001 (dataset)
+                    
+                    $ cd ds000001
+                    $ ls sub-01/*
+                    sub-01/anat:
+                    sub-01_inplaneT2.nii.gz  sub-01_T1w.nii.gz
+                    
+                    sub-01/func:
+                    sub-01_task-balloonanalogrisktask_run-01_bold.nii.gz
+                    sub-01_task-balloonanalogrisktask_run-01_events.tsv
+                    sub-01_task-balloonanalogrisktask_run-02_bold.nii.gz
+                    sub-01_task-balloonanalogrisktask_run-02_events.tsv
+                    sub-01_task-balloonanalogrisktask_run-03_bold.nii.gz
+                    sub-01_task-balloonanalogrisktask_run-03_events.tsv
+                 </code></pre>
+            </dd>
+            <dt>💻 Walk through the <a href="https://github.com/datalad-handbook/datalad-tutorial-binder">DataLad tutorial on Binder</a></dt>
+        </dl>
+    </section>
+
+    <section>
+        <h2>STEP 5: Reproducible data management</h2>
+        "Galaxy brain" update:
+        <br><br>
+        <img src="pics/handson_galaxy_brain.jpeg">
+    </section>
+
+    
+
+</section>
+
+<section>
+
+    <h2>Summary of achievements</h2>
+    <p>This is what you can do now!
+    </p>
+    <ol>
+        <li class="fragment fade-in">
+            Setup `requirements.txt` file that specifies package requirements ✅
+        </li>
+        <li class="fragment fade-in">
+            Specify and set up a virtual environment to install requirements ✅
+        </li>
+        <li class="fragment fade-in">
+            Share code, installation, and running instructions via GitHub ✅
+        </li>
+        <li class="fragment fade-in">
+            Transform your code into a Jupyter notebook ✅
+        </li>
+        <li class="fragment fade-in">
+            Set up your code repository to run in the cloud with Binder ✅
+        </li>
+        <li class="fragment fade-in">
+            Understand how containers can play a role in this context ✅
+        </li>
+        <li class="fragment fade-in">
+            Understand the benefits of data management with DataLad ✅
+        </li>
+    </ol>
+    
+</section>
+
+
+<section>
+    <h2>Other resources for reproducible workflows</h2>
+
+    <ul>
+        <li><a href="https://bids-apps.neuroimaging.io/">BIDS apps</a></li>
+        <li><a href="https://brainlife.io/">brainlife.io</a></li>
+        <li><a href="https://cookiecutter.readthedocs.io/en/1.7.2/">Cookie Cutter project templates</a></li>
+        <li>Interactive data applications with <a href="https://plotly.com/dash/">Dash and Plotly</a> (<a href="https://rt-me-fmri.herokuapp.com/">example</a>)</li>
+        <li>Matlab+SPM12 in an Octave kernel on Binder (<a href="https://github.com/jsheunis/spm12-octave-jupyter/">example</a>)</li>
+        <li>Pilelining tools: <a href="https://nipype.readthedocs.io/en/latest/">nipype</a>, <a href="https://fmriprep.org/en/stable/">fmriprep</a>, <a href="https://www.nipreps.org/dmriprep/">dmriprep</a></li>
+        <li><a href="https://zenodo.org/">Release DOIs with Zenodo</a></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Acknowledgements / Sources</h2>
+
+    <ul>
+        <li><a href="https://github.com/datalad-handbook/course">Adina Wagner's DataLad courses and slides</a></li>
+        <li><a href="https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html">The Turing Way</a></li>
+        <li><a href="https://opendreamkit.org/2017/11/02/use-case-publishing-reproducible-notebooks/">Juliette Taka, Logilab and the OpenDreamKit project</a></li>
+        <li><a href="https://zenodo.org/record/3332808#.YMX8f5MzZH0">Scriberia</a></li>
+        <li><a href="https://hackmd.io/@jVeyrAXKRpWC3e6Q9Evo6g/binder-osip2019#/">Tim Head's Binder Workshop</a></li>
+        <li><a href="https://github.com/rainsworth/osip2019-containerisation-workshop">Rachael Ainsworth's tutorial on Docker and Singularity</a></li>
+        <li><a href="https://github.com/MICA-MNI/micaopen">Multimodal Imaging and Conenctome Analysis Lab at the Montreal Neurological Institute</a></li>
+        <li><a href="https://gifer.com/en">Gifer</a></li>
+    </ul>
+</section>
+
+
+</div> <!-- /.slides -->
+</div> <!-- /.reveal -->
+
+<script src="js/reveal.js"></script>
+
+
+<script>
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1280,
+    height: 960,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0,
+
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+    // Optional reveal.js plugins
+    dependencies: [
+      { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+    ]
+  });
+</script>
+</body>
+</html>

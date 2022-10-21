@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title> DataCat </title>
+  <meta name="description" content=" incf-2022-lightning-jsheunis ">
+  <meta name="author" content=" Stephan Heunis ">
+
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="reveal.js/dist/theme/beige.css">
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- FRONT PAGE -->
+<section>
+    <h2 style="margin-bottom: 0;"><small>BrainHack Kraków</small></h2>
+    <h2 style="margin-top: 0;">Tools for reproducible workflows</h2>
+    <img src="pics/datalad_git.svg" style="height:300px; margin-bottom: 0;" alt="title image">
+    <div style="margin-top:0.5em;">
+        <table style="border: none;">
+            <tr>
+                <td>Stephan Heunis
+                <br>
+                <small>
+                    <a href="https://twitter.com/fMRwhy" target="_blank">
+                    <img data-src="pics/twitter.png" style="height:30px;margin:0px" />
+                    @fMRwhy
+                    </a>
+                </small>
+                <small>
+                    <a href="https://github.com/jsheunis" target="_blank">
+                    <img data-src="pics/GitHub.png" style="height:30px;margin:0px" />
+                    jsheunis
+                    </a>
+                </small>
+                </td>
+                <td><img style="height:100px;margin-right:1px;margin-bottom:10px;vertical-align:middle;" data-src="pics/fzj_logo.svg" /></td>
+            </tr>
+        </table>
+    </div>
+    <p style="text-align: center;">
+        <small><a href="http://psychoinformatics.de" target="_blank">Psychoinformatics lab</a>
+            <br>
+            Institute of Neuroscience and Medicine, Brain &amp; Behavior (INM-7), Germany
+            <br>
+        </small>
+    </p>
+    <br>
+    <div>
+        <small>Slides:&nbsp;</small><a href="https://jsheunis.github.io/brainhack-krakow-talk"><small>jsheunis.github.io/brainhack-krakow-talk</small></a>
+    </div>
+</section>
+
+<section>
+    <h2>Acknowledgements</h2>
+
+    <img src="pics/funders.svg" alt="" width="100%">
+
+</section>
+
+<section>
+    <h2>A couple of things about me...</h2>
+    <ul>
+        <li>I'm a research software engineer at FZ Jülich. My background:</li>
+        <ul>
+            <li>Studied engineering (robotics)</li>
+            <li>Worked for large company and then a tiny startup</li>
+            <li>Moved to the Netherlands to do a Phd in neuroimage processing</li>
+            <li>Started my current job at FZJ in Germany</li>
+        </ul>
+        <li>I passionately like: open and inclusive science, programming, learning, a South African "braai"</li>
+        <li>I passionately dislike: hierarchies, systemic mysogyny/racism/ableism, any form of admin</li>
+    </ul>
+</section> 
+
+<section>
+    <h2>A couple of things about me...</h2>
+    <ul>
+        <li>My biases:</li>
+    </ul>
+    <br>
+    <img src="pics/results_vs_methods.png" alt="" width="100%">
+</section> 
+
+<section>
+    <h3>A couple of things about YOU...</h3>
+    <iframe src="https://directpoll.com/r?XDbzPBd3ixYqg8hzBALYlyxOlhavNi70g6XyPwO" frameborder="0" height="700px" width="800px"></iframe>
+    <!-- <a href="http://etc.ch/AHNN" target="_blank">http://etc.ch/AHNN</a> -->
+    <!-- <img src="https://directpoll.com/r?XDbzPBd3ixYqg8hzBALYlyxOlhavNi70g6XyPwO" alt=""> -->
+    <!-- <br>
+    <a href="http://etc.ch/AHNN" target="_blank"><img data-src="pics/directpollqr.png" /></a> -->
+</section> 
+
+<section>
+    <h2>So let's talk about reproducibility</h2>
+    <img src="pics/horse_drawing.jpeg" alt="">
+</section>
+
+
+<section>
+    <h2>Reproducibility: what does it mean?</h2>
+    <img src="pics/turingway/ReproducibleDefinitionGrid.png" alt="">
+    <imgcredit>CC-BY Scriberia and <a href="https://the-turing-way.netlify.app/reproducible-research/rdm.html" target="_blank">
+        The Turing Way</a>
+    </imgcredit>
+</section>
+
+<section>
+    <h2>Reproducibility: what is needed?</h2>
+    <br>
+    <blockquote>An article about computational science in a scientific publication is not the scholarship itself, it is merely advertising of the scholarship. The actual scholarship is the complete ... set of instructions [and data] which generated the figures." David Donoho, 1998</blockquote>
+    <br>
+    <small><a href="http://statweb.stanford.edu/~wavelab/Wavelab_850/wavelab.pdf">http://statweb.stanford.edu/~wavelab/Wavelab_850/wavelab.pdf</a></small>
+</section>
+
+<section>
+    <h2>Reproducibility: transparency in methods</h2>
+    <img src="pics/draw_an_owl.jpeg" alt="">
+</section>
+
+<section>
+    <h2>Reproducibility in neuroscience: why?</h2>
+    <img src="pics/complex_neuro.jpeg" alt="">
+</section>
+
+<section>
+    <h2>Complex issues: Data</h2>
+    <ul style="font-size:35px">
+        <li>
+            Neuroscientists acquire interesting data, but it has its peculiarities:
+        </li>
+        <ul style="font-size:30px">
+            <li class="fragment fade-in" data-fragment-index="1">
+                Depending on acquisition hardware and analysis software, some
+                data are in proprietary formats (e.g., Neuromag, brain voyager,
+                brain vision)
+            </li>
+            <li class="fragment fade-in" data-fragment-index="1">
+                Depending on field, data can be sizeable (e.g., (f)MRI, CT,
+                EEG, PET, MEG)
+            </li>
+            <li class="fragment fade-in" data-fragment-index="1">
+                Heterogenous data from complex acquisitions with multiple data
+                channels and modalities
+            </li>
+            <li class="fragment fade-in" data-fragment-index="1">
+                Datasets are getting bigger and bigger (<a href="https://sci-hub.se/10.1016/j.neuroimage.2017.04.061" target="_blank">
+                Bzdok & Yeo, 2017</a>), e.g. multi-modal imaging, behavioral + genetics
+                data in HCP (<a href="http://humanconnectome.org/" target="_blank">humanconnectome.org</a>)
+                or UKBiobank (<a href="https://www.ukbiobank.ac.uk" target="_blank">ukbiobank.ac.uk/</a>)
+            </li>
+            <li class="fragment fade-in" data-fragment-index="1">
+                Some data fall under General Data Protection Regulation (GDPR)
+            </li>
+        </ul>
+    </ul>
+         <p class="fragment fade-in" data-fragment-index="2">
+           This makes data harder to access, structure, and share</p>
+</section>
+
+
+<section>
+    <h2>Complex issues: analyses</h2>
+            <img class="fragment fade-in-then-semi-out"
+                 data-fragment-index="1" height="200"
+                 src="pics/masterplan.png">
+    <ul style="font-size:35px">
+        <li class="fragment fade-in" data-fragment-index="2">
+            Much of neuroscientific research is computationally intensive, with
+            complex workflows from raw data to result, and plenty of researchers
+            degrees of freedom
+        </li>
+    </ul>
+    <img class="fragment fade-in" data-fragment-index="2" src="pics/dataflow.jpg">
+    <br>
+    <small><imgcredit>
+        <a href="https://www.frontiersin.org/articles/10.3389/fninf.2012.00009/full" target="_blank">
+            Poline et al., 2011</a></imgcredit></small>
+</section>
+
+<section>
+    <h2>Complex issues: analyses</h2>
+    <ul>
+        The analytic flexibility leads to sizable variations in conclusion.
+        <table style="font-size:35px">
+            <tr class="fragment fade-in-then-semi-out">
+                <td>
+                <dl>
+                    <dt>NARPS Study,<br>
+                    <small><a href="https://sci-hub.se/10.1038/s41586-020-2314-9" target="_blank">
+                    Botvinik-Nezer et al., 2020</a></small></dt>
+                </dl>
+                </td>
+            <td>
+                70 independent research groups, <br> investigating 9 hypothesis,
+                on the <br>same data: Consistent conclusions  <br>for four
+                hypothesis
+            </td>
+            </tr>
+            <tr class="fragment fade-in">
+                <td>
+                    The variety of methodological <br>
+                    & analytical choices is not the <br>
+                    enemy to computational  <br>reproducibility,
+                    <strong>the challenge <br>lies in encoding
+                    those degrees <br>of freedom in a
+                    standardized, <br>ideally machine-readable
+                    way <br></strong>
+                    <small><a href="https://sci-hub.se/10.1111/nyas.13325" target="_blank">
+                        Gilmore et al., 2017</a> </small>
+                </td>
+                <td>
+                <img src="pics/sidney_harris_miracle.jpg" style="box-shadow: 10px 10px 8px #888888; vertical-align: top;" height="500"><br>
+                </td>
+            </tr>
+    </table>
+</section>
+
+<section>
+    <h2>Complex issues: software/tools</h2>
+    <iframe src="https://giphy.com/embed/yhcqymRLlv7K8" width="480" height="363" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/oc-the-rachel-bilson-yhcqymRLlv7K8"></a></p>
+</section>
+
+<section>
+    <h2>Complex issues: software/tools</h2>
+
+    <ul style="font-size:35px">
+        <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
+            Software is a part of the digital provenance of your work:
+            Some analysis will only work in the desired way (or at all)
+            in specific versions of a software
+        </li>
+        <li class="fragment fade-in" data-fragment-index="2">
+            But it goes beyond "one software": Modern data analysis software
+            has an incredibly complex dependency stack
+        </li>
+        <li class="fragment fade-in" data-fragment-index="2">
+            Example Scikit-learn
+            <small>
+            Direct dependencies: 38 packages, 153 dependency relations.
+            Recursive dependencies: 485 packages, 10715 dependency relations</small>
+        </li>
+    </ul>
+    <div class="fragment fade-in">
+    <img src="pics/dependencies_sklearn.png">
+    <small><a href="http://computation-in-science.khinsen.net/software-dependencies.html" target="_blank">
+                "Computation in science", Hinsen (2020)
+            </a></small></div>
+</section>
+
+<section>
+    <h2>Complex issues: infrastructure</h2>
+    <h3>"Works on my machine"</h3>
+    <img src="pics/WOMM.jpg">
+    <imgcredit><a href="https://derickbailey.com/2017/02/08/digging-into-the-works-on-my-machine-problem/" target="_blank">
+        derickbailey.com
+    </a> </imgcredit>
+</section>
+
+
+
+
+
+<section>
+    <h2>Complex issues: infrastructure</h2>
+    <h3>"Works on my machine"</h3>
+    <img src="pics/WOMM2.jpg">
+        <imgcredit>Based on <a href="https://derickbailey.com/2017/02/08/digging-into-the-works-on-my-machine-problem/" target="_blank">
+        derickbailey.com
+    </a> </imgcredit>
+</section>
+
+<section>
+    <h2>Complex issues: infrastructure</h2>
+    <img src="pics/glatard01.png">
+</section>
+
+<section>
+    <h2>Complex issues: infrastructure</h2>
+    <img src="pics/glatard02.png">
+</section>
+
+<section>
+    <h2>Complex issues: changes over time</h2>
+    <img src="pics/final.png" height="500">
+    <br>
+    <small><imgcredit>Based on Piled Higher and Deeper
+        <a href="https://phdcomics.com/comics/archive_print.php?comicid=1531" target="_blank">
+            1531
+        </a> </imgcredit></small>
+</section>
+
+<section>
+    <h2>Complex issues: changes over time</h2>
+    <img src="pics/phd052810s.gif" height="500">
+    <br>
+    <small><imgcredit>Piled Higher and Deeper
+        <a href="https://phdcomics.com/comics/archive_print.php?comicid=1323" target="_blank">
+            1323
+        </a> </imgcredit></small>
+</section>
+
+
+
+<section>
+    <h2>Complex issues: changes over time</h2>
+    <h3>"This used to work on my machine..."</h3>
+    <img src="pics/WOMM2.jpg"><br>
+    And if the analysis does not fail, but produces different results,<br>
+    <b>how do you know which is the correct one</b>?
+</section>
+
+
+<section>
+    <h2>Complex issues: summary</h2>
+    <img src="pics/fragile.png" height="700">
+    <br>
+    <small><imgcredit>Based on <a href="https://xkcd.com/2347/" target="_blank">
+        xkcd.com/2347/</a> (CC-BY)</imgcredit></small>
+</section>
+
+<section>
+    <h2>Complex issues: summary</h2>
+    "Shit, which version of which script produced these outputs from which version
+    of what data?"<br>
+    <img src="pics/turingway/manuallabor.png">
+    <img src="pics/turingway/findfiles.png" height="400">
+    <img src="pics/turingway/projectstack.png" height="350">
+    <small><imgcredit>CC-BY Scriberia and <a href="https://the-turing-way.netlify.app/reproducible-research/rdm.html" target="_blank">
+        The Turing Way</a></small>
+    </imgcredit>
+</section>
+
+
+
+
+
+<section>
+    <h2>Complex issues: changes over time</h2>
+</section>
+
+<section>
+    <h2>Complex issues: changes over time</h2>
+</section>
+
+
+<section>
+    <h2>Everything matters!</h2>
+</section>
+
+
+
+
+
+
+<section>
+    <h2>So what should we do about it???</h2>
+    We need to:
+    <p>Track everything</p>
+    <p></p>
+</section>
+
+<section>
+    <img src="pics/datacat2_the_opportunity.svg" alt="">
+</section>
+
+<section>
+    <img src="pics/datacat3_the_toolset.svg" alt="">
+</section>
+
+<section>
+    <img src="pics/datacat4_the_catalog.svg" alt="">
+</section>
+
+<section>
+    <img src="pics/datacat5_try_it_out.svg" alt="">
+</section>
+
+
+
+</div> <!-- /.slides -->
+</div> <!-- /.reveal -->
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 960,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.02,
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1.0,
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: 'c',
+        pdfSeparateFragments: false,
+        pdfMaxPagesPerSlide: 1,
+        pdfPageHeightOffset: -1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+</script>
+</body>
+</html>
