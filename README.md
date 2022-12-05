@@ -1,109 +1,100 @@
-# OHBM Hackathon 2021 TrainTrack Session - Reproducible Workflows
+# BrainHack Nordic 2022 - DataLad Workshop
 
-Welcome to the code and content repository of the hands-on session ***"I’d like to reproduce your results…" and other tales in Reproducible Workflows***, part of the TrainTrack of the [OHBM BrainHack 2021](https://ohbm.github.io/hackathon2021/traintrack/)
+Welcome to the code and content repository of the hands-on workshop: ***Research Data Management with DataLad***, part of the TrainTrack of the [BrainHack Nordic 2022](https://ohbm.github.io/hackathon2021/traintrack/) event.
 
 ---
 ### Presenters:
-[Stephan Heunis](https://github.com/jsheunis) and [Şeyma Bayrak](https://github.com/sheyma)
+[Stephan Heunis](https://github.com/jsheunis)
 
 ---
 
-## Abstract
+## Summary
 
-Almost all researchers have data and analysis scripts that generate results in the form of figures. Yet, few other researchers can use these exact data and scripts to generate the same figures, or to reproduce all results of the study. In this session, we’ll take you on a journey of building reproducible workflows that help alleviate the anxiety associated with receiving that dreaded email *'I’d like to reproduce your results...'*
+Learn how to use the free and open source tool DataLad to do continuous Research Data Management throughout the lifecycle of a research project. Topics include:
 
-We’ll start with helping others run your code on their machines, and end up with a fully reproducible workflow running in the cloud, with several pit stops in between.
-
-## Scenario
-
-As a researcher working in neuroimage analysis, you (the person following this hands-on session) have recently published a paper using cortical thickness data from [MICA-MNI](https://github.com/MICA-MNI/micaopen/tree/master/surfstat/surfstat_tutorial/thickness).
-
-Your paper described an analysis pipeline to compare the thickness in various brain regions for a group of 259 participants, and your results section contains several figures including a visualization of statistical test values.
-
-![alt text](figure.png)
-
-You receive an email from a colleague asking if you can send them the necessary code, data and instructions to reproduce these results.
-
-## Goals
-
-By the end of this session, you should be able to do the following STEPS:
-
-1. Set up a `requirements.txt` file that specifies package requirements
-2. Specify and set up a virtual environment to install requirements
-3. Share code, installation, and running instructions via GitHub
-4. Transform your code into a Jupyter notebook
-5. Set up your code repository to run in the cloud with Binder
-6. Understand how containers can play a role in this context
-7. Understand the benefits of data management with DataLad
-
+- DataLad datasets
+- Version control
+- Data consumption & transport
+- Dataset nesting
+- Computationally reproducible execution
+- Publishing datasets
+- Using published datasets
 
 ## Slides
 
-The sessions follows [**these slides**](https://ohbm.github.io/handson-2021-reproducible-workflows/presentation/ohbm-handson-repro.html) step by step.
+Slides: [brainhack-nordic-datalad](https://jsheunis.github.io/brainhack-nordic-datalad)
 
-## Computational environment
+The sessions follows the slides step by step.
 
-Some parts of the session will be run in a Binder-based computational environment in the cloud.
+## Cloud-compute environment
 
-One environment demonstrates the use of `requirements.txt` as the configuration file for Binder. Access it here:
+The workshop will be done in the browser on a cloud server with JupyterHub:
+[https://datalad-hub.inm7.de](https://datalad-hub.inm7.de)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ohbm/handson-2021-reproducible-workflows/HEAD)
+This server has been set up prior to the start of the workshop. It has `datalad`,
+`datalad-container`, `singularity`, and all other internal dependencies pre-installed.
 
-Another environment demonstrates the use of `environment.yml` as the configuration file for Binder. Access it here:
+All you have to do is log in to the server (at the start of the workshop) and start using it:
+- Log in using the email address with which you registered for the brainhack
+- Select a password when logging in for the first time; remember it!
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ohbm/handson-2021-reproducible-workflows/conda-env)
-
-The latter environment builds from the [`conda-env` branch](https://github.com/ohbm/handson-2021-reproducible-workflows/tree/conda-env).
-
-## Local installation
-
-If you'd like to install the full repository (code, data, confirguration files, presentation slides, etc) on your machine, please follow these instructions:
+We will then do the workshop steps via the terminal.
 
 
-### 1. Install required system level apps
+## Local installation (not required)
 
-These are listed in `apt.txt`
+For ease of use and to minimise delays, we suggest you use the provided cloud-compute envoironment.
 
-### 2. Clone the repository
+However, if you are confident that you can set up your machine with DataLad successfully, you can run the workshop on your own laptop.
 
-```
-git clone https://github.com/ohbm/handson-2021-reproducible-workflows.git
-```
+#### Installation instructions
 
-### 3. Create a virtual environment
+1. Install `git`, `git-annex` and `datalad`: [select the appropriate installation route](https://www.datalad.org/#install) for your setup.
+2. Instal the extension `datalad-container`: `pip install datalad-container`
+3. Install `singulariy`: https://docs.sylabs.io/guides/latest/admin-guide/installation.html
 
-With `virtualenv`:
-```
-pip install virtualenv
-virtualenv --python=python3.6 mypythonenv
-source mypythonenv/bin/activate
-```
 
-With `conda`:
-```
-# First install miniconda: https://docs.conda.io/en/latest/miniconda.html
-conda create -n mypythonenv python=3.6
-conda activate mypythonenv
-```
 
-### 4. Install dependencies
+## Scenario: the life of digital objects
 
-With `pip` and `requirements.txt` (`main` branch):
+- Alice is a PhD student.
+- She works on a fairly typical research project: data collection & and processing.
+  - Exact kind of data not relevant for us
+  - first sample → final result: cumulative process
 
-```
-pip install -r requirements.txt
-```
+#+REVEAL:split
 
-With `conda` and `environment.yml` (`conda-env` branch)
-```
-conda env create -f environment.yml
-```
+- When working locally, Alice likes to have an automated record of:
+  - when a given file was last changed
+  - where it came from
+  - what input files were used to generate a given output
+  - why some things were done.
+- Even without sharing, essential for her future self
+- Project is exploratory: often large changes to her analysis scripts
+- Enjoys comfort of being able to return to a previously recorded state
 
-Additional dependencies can only be installed as follows:
+This is *local* version control.
 
-```
-git clone https://github.com/MICA-MNI/BrainStat.git
-cd BrainStat
-python3 setup.py build
-python3 setup.py install --user
-```
+#+REVEAL:split
+
+- Alice's work not confined to a single computer
+  - laptop / desktop / remote server
+  - automatic and efficient way to synchronise
+- Some data collected / analysed by colleagues from other team
+  - all synchronize with centralized storage
+  - preserving origin & authorship
+  - combining simultaneous contributions
+
+This is *distributed* version control.
+
+#+REVEAL:split
+
+- Needs to work on a subset of data at a given time
+  - all files are kept on a server
+  - few files are rotated into and out of the laptop
+- Needs to publish data at project's end
+  - raw data / outputs / both
+  - completely or selectively
+
+... all these were typical data management issues which we will touch upon during this workshop,
+using DataLad as our primary tool.

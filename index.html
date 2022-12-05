@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="reveal.js/dist/theme/beige.css">
   <!-- Theme used for syntax highlighted code -->
   <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="custom_styles.css">
 </head>
 <body>
 
@@ -22,8 +23,7 @@
 
 <!-- FRONT PAGE -->
 <section>
-    <h2 style="margin-bottom: 0;"><small>BrainHack Kraków</small></h2>
-    <h2 style="margin-top: 0;">Tools for reproducible workflows</h2>
+    <h2 style="margin-bottom: 0;">BrainHack Nordic 2022</h2>
     <img src="pics/datalad_git.svg" style="height:300px; margin-bottom: 0;" alt="title image">
     <div style="margin-top:0.5em;">
         <table style="border: none;">
@@ -54,25 +54,39 @@
             <br>
         </small>
     </p>
-    <!-- <br>
+    <br>
     <div>
-        <small>Slides:&nbsp;</small><a href="https://jsheunis.github.io/brainhack-krakow-talk"><small>jsheunis.github.io/brainhack-krakow-talk</small></a>
-    </div> -->
+        <small>Slides:&nbsp;</small><a href="https://jsheunis.github.io/brainhack-nordic-datalad"><small>jsheunis.github.io/brainhack-nordic-datalad</small></a>
+    </div>
 </section>
+
 
 <section>
     <h2>Acknowledgements</h2>
 
-    <img src="pics/funders.svg" alt="" width="100%">
-
+    <div style="margin-top:0.5em;">
+        <table style="border: none;">
+            <tr>
+                <td><img style="height:500px;margin-right:1px;margin-bottom:10px;vertical-align:middle;" data-src="pics/funders.svg" /></td>
+                <td><img style="height:500px;margin-right:1px;margin-bottom:10px;vertical-align:middle;border:1px solid black" data-src="pics/psyinf_team.png" /></td>
+            </tr>
+        </table>
+    </div>
+    <ul>
+        <li>The People with Money</li>
+        <li>The Psychoinformatics + DataLad teams</li>
+        <li>All contributors to the open-source DataLad ecosystem</li>
+        <li>Cyril and Melanie, and the host institution</li>
+    </ul>
 </section>
+
 
 <section>
     <h2>A couple of things about me...</h2>
     <ul>
         <li>I'm a research software engineer at FZ Jülich. My background:</li>
         <ul>
-            <li>Studied engineering (robotics)</li>
+            <li>Studied engineering (robotics) in South Africa</li>
             <li>Worked for large company and then a tiny startup</li>
             <li>Moved to the Netherlands to do a Phd in neuroimage processing</li>
             <li>Started my current job at FZJ in Germany</li>
@@ -80,983 +94,737 @@
         <li>I passionately like: open and inclusive science, programming, learning, a South African "braai"</li>
         <li>I passionately dislike: hierarchies, systemic mysogyny/racism/ableism, any form of admin</li>
     </ul>
-</section> 
+</section>
 
-<section>
-    <h2>A couple of things about me...</h2>
-    <ul>
-        <li>My biases:</li>
-    </ul>
-    <br>
-    <img src="pics/results_vs_methods.png" alt="" width="100%">
-</section> 
 
 <section>
     <h3>A couple of things about YOU...</h3>
     <a href="http://etc.ch/AHNN" target="_blank">http://etc.ch/AHNN</a><br>
     <a href="http://etc.ch/AHNN" target="_blank"><img data-src="pics/directpollqr.png" /></a>
-</section> 
-
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll1.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll2.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll3.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll4.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll5.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll6.png" alt="">
-</section> 
-<section>
-    <h3>A couple of things about YOU...</h3>
-    <img src="pics/poll7.png" alt="">
-</section> 
-
-<section>
-    <h2>So let's talk about reproducibility</h2>
-    <img src="pics/horse_drawing.jpeg" alt="">
 </section>
 
 
 <section>
-    <h2>Reproducibility: what does it mean?</h2>
-    <img src="pics/turingway/ReproducibleDefinitionGrid.png" alt="">
-    <br>
-    <small><imgcredit>CC-BY Scriberia and <a href="https://the-turing-way.netlify.app/reproducible-research/rdm.html" target="_blank">
-        The Turing Way</a>
-    </imgcredit></small>
-</section>
-
-<section>
-    <h2>Reproducibility: what is needed?</h2>
-    <br>
-    <blockquote>An article about computational science in a scientific publication is not the scholarship itself, it is merely advertising of the scholarship. The actual scholarship is the complete ... set of instructions [and data] which generated the figures." David Donoho, 1998</blockquote>
-    <br>
-    <small><a href="http://statweb.stanford.edu/~wavelab/Wavelab_850/wavelab.pdf">http://statweb.stanford.edu/~wavelab/Wavelab_850/wavelab.pdf</a></small>
-</section>
-
-<section>
-    <h2>Reproducibility: what is needed?</h2>
-    <img src="pics/draw_an_owl.jpeg" alt="">
-    <p class="fragment fade-in" >Transparency in methods</p>
-</section>
-
-<section>
-    <h2>Reproducibility: why <em>neuroscience</em>?</h2>
-    <img src="pics/complex_neuro.jpeg" alt="">
-</section>
-
-<section>
-    <h2>Complex issues: Data</h2>
-    <ul style="font-size:35px">
-        <li>
-            Neuroscientists acquire interesting data, but it has its peculiarities:
-        </li>
-        <ul style="font-size:30px">
-            <li class="fragment fade-in" data-fragment-index="1">
-                Depending on acquisition hardware and analysis software, some
-                data are in proprietary formats (e.g., Neuromag, brain voyager,
-                brain vision)
-            </li>
-            <li class="fragment fade-in" data-fragment-index="1">
-                Depending on field, data can be sizeable (e.g., (f)MRI, CT,
-                EEG, PET, MEG)
-            </li>
-            <li class="fragment fade-in" data-fragment-index="1">
-                Heterogenous data from complex acquisitions with multiple data
-                channels and modalities
-            </li>
-            <li class="fragment fade-in" data-fragment-index="1">
-                Datasets are getting bigger and bigger (<a href="https://sci-hub.se/10.1016/j.neuroimage.2017.04.061" target="_blank">
-                Bzdok & Yeo, 2017</a>), e.g. multi-modal imaging, behavioral + genetics
-                data in HCP (<a href="http://humanconnectome.org/" target="_blank">humanconnectome.org</a>)
-                or UKBiobank (<a href="https://www.ukbiobank.ac.uk" target="_blank">ukbiobank.ac.uk/</a>)
-            </li>
-            <li class="fragment fade-in" data-fragment-index="1">
-                Some data fall under General Data Protection Regulation (GDPR)
-            </li>
-        </ul>
-    </ul>
-         <p class="fragment fade-in" data-fragment-index="2">
-           This makes data harder to access, structure, and share</p>
-</section>
-
-
-<section>
-    <h2>Complex issues: analyses</h2>
-            <img class="fragment fade-in-then-semi-out"
-                 data-fragment-index="1" height="200"
-                 src="pics/masterplan.png">
-    <ul style="font-size:35px">
-        <li class="fragment fade-in" data-fragment-index="2">
-            Much of neuroscientific research is computationally intensive, with
-            complex workflows from raw data to result, and plenty of researchers
-            degrees of freedom
-        </li>
-    </ul>
-    <img class="fragment fade-in" data-fragment-index="2" src="pics/dataflow.jpg">
-    <br>
-    <small><imgcredit>
-        <a href="https://www.frontiersin.org/articles/10.3389/fninf.2012.00009/full" target="_blank">
-            Poline et al., 2011</a></imgcredit></small>
-</section>
-
-<section>
-    <h2>Complex issues: analyses</h2>
-    <ul>
-        The analytic flexibility leads to sizable variations in conclusion.
-        <table style="font-size:35px">
-            <tr class="fragment fade-in-then-semi-out">
-                <td>
-                <dl>
-                    <dt>NARPS Study,<br>
-                    <small><a href="https://sci-hub.se/10.1038/s41586-020-2314-9" target="_blank">
-                    Botvinik-Nezer et al., 2020</a></small></dt>
-                </dl>
-                </td>
-            <td>
-                70 independent research groups, <br> investigating 9 hypothesis,
-                on the <br>same data: Consistent conclusions  <br>for four
-                hypothesis
-            </td>
-            </tr>
-            <tr class="fragment fade-in">
-                <td>
-                    The variety of methodological <br>
-                    & analytical choices is not the <br>
-                    enemy to computational  <br>reproducibility,
-                    <strong>the challenge <br>lies in encoding
-                    those degrees <br>of freedom in a
-                    standardized, <br>ideally machine-readable
-                    way <br></strong>
-                    <small><a href="https://sci-hub.se/10.1111/nyas.13325" target="_blank">
-                        Gilmore et al., 2017</a> </small>
-                </td>
-                <td>
-                <img src="pics/sidney_harris_miracle.jpg" style="box-shadow: 10px 10px 8px #888888; vertical-align: top;" height="500"><br>
-                </td>
-            </tr>
-    </table>
-</section>
-
-<section>
-    <h2>Complex issues: software/tools</h2>
-
-    <ul style="font-size:35px">
-        <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
-            Software is a part of the digital provenance of your work:
-            Some analysis will only work in the desired way (or at all)
-            in specific versions of a software
-        </li>
-        <li class="fragment fade-in" data-fragment-index="2">
-            But it goes beyond "one software": Modern data analysis software
-            has an incredibly complex dependency stack
-        </li>
-        <li class="fragment fade-in" data-fragment-index="2">
-            Example Scikit-learn
-            <small>
-            Direct dependencies: 38 packages, 153 dependency relations.
-            Recursive dependencies: 485 packages, 10715 dependency relations</small>
-        </li>
-    </ul>
-    <div class="fragment fade-in">
-    <img src="pics/dependencies_sklearn.png">
-    <small><a href="http://computation-in-science.khinsen.net/software-dependencies.html" target="_blank">
-                "Computation in science", Hinsen (2020)
-            </a></small></div>
-</section>
-
-<section>
-    <h2>Complex issues: infrastructure</h2>
-    <h3>"Works on my machine"</h3>
-    <img src="pics/WOMM.jpg">
-    <imgcredit><a href="https://derickbailey.com/2017/02/08/digging-into-the-works-on-my-machine-problem/" target="_blank">
-        derickbailey.com
-    </a> </imgcredit>
-</section>
-
-<section>
-    <h2>Complex issues: changes over time</h2>
-    <img src="pics/final.png" height="500">
-    <br>
-    <small><imgcredit>Based on Piled Higher and Deeper
-        <a href="https://phdcomics.com/comics/archive_print.php?comicid=1531" target="_blank">
-            1531
-        </a> </imgcredit></small>
-</section>
-
-<section>
-    <h2>Complex issues: changes over time</h2>
-    <img src="pics/phd052810s.gif" height="500">
-    <br>
-    <small><imgcredit>Piled Higher and Deeper
-        <a href="https://phdcomics.com/comics/archive_print.php?comicid=1323" target="_blank">
-            1323
-        </a> </imgcredit></small>
-</section>
-
-
-
-<section>
-    <h2>Complex issues: changes over time</h2>
-    <h3>"This used to work on my machine..."</h3>
-    <img src="pics/WOMM2.jpg"><br>
-    And if the analysis does not fail, but produces different results,<br>
-    <b>how do you know which is the correct one</b>?
-</section>
-
-
-<section>
-    <h2>So what do we end up with?</h2>
-    <img src="pics/fragile.png" height="700">
-    <br>
-    <small><imgcredit>Based on <a href="https://xkcd.com/2347/" target="_blank">
-        xkcd.com/2347/</a> (CC-BY)</imgcredit></small>
-</section>
-
-<section>
-    <h2>So what do we end up with?</h2>
-    "Shit, which version of which script produced these outputs from which version
-    of what data?"<br>
-    <img src="pics/turingway/manuallabor.png">
-    <img src="pics/turingway/findfiles.png" height="400">
-    <img src="pics/turingway/projectstack.png" height="350">
-    <small><imgcredit>CC-BY Scriberia and <a href="https://the-turing-way.netlify.app/reproducible-research/rdm.html" target="_blank">
-        The Turing Way</a></small>
-    </imgcredit>
-</section>
-
-<section>
-    <h2>What should we do about it???</h2>
-    The pipeline needs to become transparent
-    <table>
-        <tr>
-            <td style="text-align: right;">
-            <img src="pics/Provenance_alpha.png" style="vertical-align: top;">
-            <small><imgcredit><a href="https://the-turing-way.netlify.app/reproducible-research/vcs/vcs-data.html" target="_blank">
-                        CC-BY Scriberia & The Turing Way</a>
-            </imgcredit></small>
-            </td>
-            <td style="font-size:35px">
-                <br><br>
-                <i>Digital Provenance</i> = A complete description of how a digital file
-              came to be <a href="https://www.go-fair.org/fair-principles/r1-2-metadata-associated-detailed-provenance/" target="_blank">
-                    (FAI<b>R</b> principles)
-                </a> </i>
-            </td>
-        </tr>
-    </table>
-</section>
-
-<section>
-    <h2>What should we do about it???</h2>
-    The pipeline needs to become automated
-    <table>
-        <tr>
-            <td style="text-align: left;">
-            <img src="pics/turingway/MachineReadable.png" style="vertical-align: bottom;">
-            <small><imgcredit><a href="https://the-turing-way.netlify.app/reproducible-research/vcs/vcs-data.html" target="_blank">
-                        CC-BY Scriberia & The Turing Way</a>
-            </imgcredit></small>
-            </td>
-            <td style="font-size: 8px;">
-                <ul style="font-size:35px">
-                    <li>
-                        enshrine analysis <br>
-                        & workflows in <br>
-                        code, not clicks
-                    </li>
-                    <li>
-                        Make workflow <br>
-                        execution easy, <br>
-                        e.g., with master <br>
-                        scripts to bundle<br>
-                        up individual steps <br>
-                    </li>
-                    <small>Perkel, 2020,
-                        <a href="https://www.nature.com/articles/d41586-020-02462-7" target="_blank">
-                            checklist for <br>
-                            computational reproducibility
-                    </a></small>
-                </ul>
-
-            </td>
-        </tr>
-    </table>
-    
-</section>
-
-<section>
-    <h2>Don't panic!</h2>
-    <h3>Large & growing ecosystem of Open Source software & data formats</h3>
-    <table>
-      <tr style="vertical-align:middle">
-        <td style="vertical-align:middle">
-          <img style="height:50px;margin-right:50px" data-src="pics/neurodebian.png"/>
-          <img style="height:50px;margin-right:50px" data-src="pics/jupyter_logo.png"/>
-          <img style="height:50px;margin-right:50px" data-src="pics/neologo.png" />
-          <img style=height:50px;margin-left:50px" data-src="pics/mindboggle_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/psychopy_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/fsl_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/pydra_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/R_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/nwblogo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/rstudio-logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/afni_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/pymvpa_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/mne_logo.svg" />
-          <img style="height:50px;margin-left:50px" data-src="pics/bids.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/FSlogo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/odMLLogo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/pysurfer_logo.png" />
-          <img style="height:50px;margin-left:50px" data-src="pics/nix_logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/nilearn-logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/elephant_logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/ants_logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/brainiak_logo.svg" />
-          <img style="height:50px;margin:20px" data-src="pics/spm.svg" />
-          <img style="height:50px;margin:20px" data-src="pics/cpac_logo.png" />
-          <img style="height:50px;margin:20px" data-src="pics/fieldtrip_logo.png" />
-      <div style="margin:-100px;margin-left:600px;font-size:35px">... and many more!</div>
-      </td>
-      </tr>
-  </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <ul>
-        <li>Remove accessibility barriers</li>
-        <li>Transparent digital provenance</li>
-    </ul>
-</section>
-
-<section>
-    <h3>And finally...the point of my talk:</h3>
-    <h2>Tools for reproducible workflows in neuroscience</h2>
-    <iframe src="https://giphy.com/embed/yhcqymRLlv7K8" width="480" height="363" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/oc-the-rachel-bilson-yhcqymRLlv7K8"></a></p>
-</section>
-
-
-<section>
-    <h2>A PhD student walks into a lab...</h2>
-
-    <p>You've just published a paper that calculated the cortical thickness 
-        for a group of research participants. You've run some statistical tests
-        and visualized the results.
-    </p>
-
-    <table>
-        <tr>
-            <td><img src="pics/handson_fig1.png" height="500"></td>
-            <td><img src="pics/handson_figs234.png" height="500"></td>
-        </tr>
-    </table>
-
-</section>
-
-<section>
-    <h2>A PhD student walks into a lab...</h2>
-
-    <p>Soon after, a researcher in your field sends you an email:
-    </p>
-    <img src="pics/handson_email1.png">
-
-</section>
-
-<section>
-    <h2>A PhD student walks into a lab...</h2>
-    <p>How do we approach this challenge? Which skills should we have to go...
-    </p>
-
-    <table>
-        <tr>
-            <td>
-                <div class="fragment fade-in">
-                    <p >from reacting like this:</p>
-                    <iframe src="https://gifer.com/embed/CfNy" width=480 height=392.170 frameBorder="0" allowFullScreen></iframe>
-                </div>
-            </td>
-            <td>
-                <div class="fragment fade-in">
-                    <p >to reacting like this:</p>
-                    <iframe src="https://gifer.com/embed/2I0" width=480 height=390 frameBorder="0" allowFullScreen></iframe>
-                </div>
-            </td>
-        </tr>
-    </table>
-    
-    
-</section>
-
-<section>
-    <h2>A PhD student walks into a lab...</h2>
-    <p>We are going to take a step-wise, "Galaxy brain" approach:
-    </p>
-    <img src="pics/handson_galaxy_brain.jpeg">
-</section>
-
-
-<section>
-    <h2>Step 1: share data and code</h2>
-
-    Why don't we just send them the data and code "via" a download link?
-    <br><br>
-    <img src="pics/handson_email2.png">
-
-</section>
-
-<section>
-    <h2>Step 1: share data and code</h2>
-
-    💬 Why don't we just send them the data and code "via" a download link? 
-    <br><br>
-    <ul>
-        <li class="fragment fade-in">
-            You have to create a link and send an email every time someone requests it
-        </li>
-        <li class="fragment fade-in">
-            There are no instructions included for running the analysis
-        </li>
-        <li class="fragment fade-in">
-            The person might not have the correct software or package versions installed
-        </li>
-        <li class="fragment fade-in">
-            They could perhaps figure out from the code which packages are required,
-            but installing them might interfere with their existing environment, which
-            might break things down the line.
-        </li>
-    </ul>
-
-</section>
-
-<section>
-    <h2>Step 1: share data and code</h2>
-
-    So they tried running the script on their machine, and then...
-    <br><br>
-    <img src="pics/handson_email3.png">
-    <br>
-    💬 What went wrong? What should we have done?
-
-</section>
-
-<section>
-    <h2>Step 1: share data and code</h2>
-
-    To prevent this issue (or similar issues), while still allowing others to run
-    the code on their machines, we need to share:
-    <br><br>
-
-    <table>
-        <tr style="color: rgb(166, 165, 165);">
-            <td>1.</td>
-            <td>The required packages</td>
-            <td><strong>requirements.txt</strong></td>
-        </tr>
-        <tr style="color: rgb(166, 165, 165);">
-            <td>2.</td>
-            <td>The Python version</td>
-            <td><strong>virtual environment</strong></td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>Instructions for how to use these to successfully run the script</td>
-            <td><strong>README</strong></td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>Data and code and all of the above in an accessible location</td>
-            <td><strong>GitHub</strong></td>
-        </tr>
-    </table>
-    <br>
-
-    <a href="https://github.com/OpenMRBenelux/openmr2021-dataviz-dash-demo">Example GitHub Repository</a>
-</section>
-
-<section>
-    <h2>Step 1: share data and code</h2>
-    Open (and free) data repositories, e.g. OpenNeuro:
-    <img src="pics/openneuro_screenshot.png" alt="">
-    
-    <a href="https://en.wikipedia.org/wiki/List_of_neuroscience_databases">Extended list of repositories</a> 
-</section>
-
-<section>
-    <h2>Step 1: share data and code</h2>
-    "Galaxy brain" update:
-    <br><br>
-    <img src="pics/handson_galaxy_brain1.jpeg">
-</section>
-
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-
-    After sharing the news about the public GitHub repo with our colleague, we get the following reply:
-    <br><br>
-
-    <img src="pics/handson_email4.png" height="650">
-
-    <br><br>
-    
-    Now we'll focus on requirements and virtual environments
-    
-
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-
-    <h3>Introducing requirements.txt</h3>
-
-    <ul>
-        <li>Single file to capture required Python packages</li>
-        <li>Makes installation straight-forward with <code>pip</code>:</li>
-        <pre>
-            <code data-trim data-line-numbers>
-                pip install -r requirements.txt
-            </code>
-        </pre>
-        <li>In the file, you can specify the required packages (check script) and versions:</li>
-        <pre>
-            <code data-trim data-line-numbers>
-                matplotlib==3.2.2
-                numpy>=1.16.5
-                pandas
-                nibabel
-                nilearn>=0.7.1
-                sklearn
-                brainspace
-            </code>
-        </pre>
-    </ul>
-
-    <div style="text-align:justify">
-        <small>
-        NOTE: not all packages/tools required for an analysis are necessarily
-        Python packages, or if they are they might not be available on the
-        <a href="https://pypi.org/">Python Package Index (PyPI)</a>. This means
-        that installing everything with <code>pip</code> and a <code>requirements.txt</code>
-        file might not be sufficient
-    </small>
-    </div>
-
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-
-    <h3>Introducing requirements.txt</h3>
-    <ul>
-        <li>Check whether some packages/tools might have to be installed differently:</li>
-        <ul>
-            <li><a href="https://wiki.debian.org/Apt">APT</a>: for managing packages (retrieval, configuration and installation) on Unix-like computer systems</li>
-            <li><a href="https://docs.conda.io/en/latest/">conda</a>: Package, dependency and environment management for any language running on Windows, macOS and Linux</li>
-        </ul>
-        <li>Add extra installation instructions to README</li>
-        <pre>
-            <code data-trim data-line-numbers>
-                git clone https://github.com/MICA-MNI/BrainStat.git
-                cd BrainStat
-                python3 setup.py build
-                python3 setup.py install
-            </code>
-        </pre>
-    </ul>
-
-    <br>
-
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-    <h3>Introducing Virtual Enviroments</h3>
-    <table>
-        <tr>
-            <td style="width: 40%;">
-                <ul>
-                    <li><code>requirements.txt</code> helps a lot, but what if the colleague already has some of these packages installed? 💬</li>
-                    <li>Installing new packages or existing packages with different versions can interfere with their local Python setup, and cause errors.</li>
-                </ul>
-            </td>
-            <td>
-                <img src="pics/handson_python_environment.png" width="600">
-                <imgcredit>XKCD</imgcredit>
-            </td>
-        </tr>
-    </table>
-    
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-
-    <h3>Introducing Virtual Enviroments</h3>
-
-    <div style="text-align:justify">
-        It would be great if colleagues could install our package requirements in a <strong>clean and isolated</strong> environment ==> virtual environments!
-    </div>
-    
-    <ul>
-        <li><a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a></li>
-        <pre>
-            <code data-trim data-line-numbers>
-                #!/bin/bash
-                pip install virtualenv #install the package
-                virtualenv --python=python3 mypythonenv #create a new virtual environment
-                source mypythonenv/bin/activate #activate the virtual environment
-                # now install your packages with pip and do the analysis
-                deactivate #deactivate the virtual environment
-            </code>
-        </pre>
-        <li><a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a></li>
-        <pre>
-            <code data-trim data-line-numbers>
-                #!/bin/bash
-                # install miniconda using install files via link
-                conda create -n mypythonenv python=3.6
-                conda activate mypythonenv
-                # now install your packages with conda and/or pip and do the analysis
-                conda deactivate #deactivate the virtual environment
-            </code>
-        </pre>
-    </ul>
-    
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-
-    So we send the update to our colleague:
-
-    <br><br>
-
-    <img src="pics/handson_email5.png">
-    
-</section>
-
-<section>
-    <h2>Step 2: software environment and requirements</h2>
-    "Galaxy brain" update:
-    <br><br>
-    <img src="pics/handson_galaxy_brain2.jpeg">
-</section>
-
-
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-
-    So you decide to chill out now that everything should be working, right? Unfortunately,
-    our feeling of accomplishment is short-lived, because Professor Important
-    Dude is back with another question..
-
-    <br><br>
-
-    <img src="pics/handson_email6.png">
-
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-
-    And then you realise... many things. At the same time:
-
-    <br><br>
-    <ul>
-        <li>Damn, you forgot about the OpenGL/LibGL requirement</li>
-        <li>You really don't want to have another Zoom call</li>
-        <li>You absolutely don't want to have multiple Zoom calls forever</li>
-    </ul>
-    <br><br>
-    So you cry out in desperation: <strong>Why can't it just work on their machines?!</strong>
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-
-    <img src="pics/handson_itworksonmymachine.jpeg" width="600">
-    <br>
-    <small></small><imgcredit>Reddit</imgcredit>
-
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-    <h3>Introducing containers</h3>
-    <ul>
-        <li>As we've seen, sharing code and data and even the virtual environment setup may not be enough for reproducibility</li>
-        <li>Also, even for moderately complex projects, the size of the software dependency stack can be </li>
-        <li>An alternative is to take a snapshot of the whole computational environment, including operating system and all software dependencies, to allow reproducibility</li>
-        <li>Useful resources:</li>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=EnJ7qX9fkcU">What is a container? (video)</a></li>
-            <li><a href="https://www.docker.com/">Docker (software for working with containers)</a></li>
-            <li><a href="https://sylabs.io/guides/2.6/user-guide/introduction.html#">Singularity (software for working with containers)</a></li>
-            <li><a href="https://github.com/rainsworth/osip2019-containerisation-workshop">Accessible tutorial on using Docker and Singularity</a></li>
-        </ul>
-    </ul>
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-    <h3>Introducing containers</h3>
-    <img src="pics/handson_vmgrid.png" width="900">
-    <br>
-    <small><imgcredit><a href="https://rainsworth.github.io/osip2019-containerisation-workshop/slides/#26">Rachael Ainsworth</a></imgcredit></small>
-    <br>
-    If we don't always want to have to explain how to install <em>yet another</em> tool,
-    maybe we can run everything in the cloud...
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-    <h3>Introducing Binder: <a href="https://mybinder.org/">mybinder.org</a></h3>
-    <img src="pics/handson_docker_binder.jpeg" height="650">
-    <br>
-    <small><imgcredit>CC-BY Scriberia and <a href="https://the-turing-way.netlify.app/reproducible-research/rdm.html" target="_blank">
-        The Turing Way</a>
-    </imgcredit></small>
-</section>
-
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-
-    <img src="pics/handson_binderize.png" height="600">
-    <br>
-    Example:
-    <br><a href="https://mybinder.org/v2/gh/OpenMRBenelux/openmr2021-dataviz-dash-demo/HEAD"><img src="https://mybinder.org/badge_logo.svg" alt="" width="200px"></a>
-
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-    We can't hold our excitement, so we send a quick email to notify the colleague:
-    <br><br>
-    <img src="pics/handson_email7.png">
-</section>
-
-<section>
-    <h2>Step 3: cloudy containers</h2>
-    "Galaxy brain" update:
-    <br><br>
-    <img src="pics/handson_galaxy_brain3.jpeg">
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-    So, you're busy (rightfully) thinking that you have done a great job of making your work
-    more reproducible, but then ... it looks like we spoke too soon. Our VIP friend has another request...
-    <br><br>
-    <img src="pics/handson_email8.png">
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-    
-    So firstly, it works for them!!! (Always try and celebrate the wins in academia, however big or small.)
-
-    <br><br>
-
-    Secondly, let's take a deeper look into this <strong>notebook</strong> thing.
-    <br>
-    And what's with <strong>Jupiter</strong>?
-    <br><br>
-    <img src="pics/handson_jupiter.png" width="600">
-    <br>
-    <small><imgcredit>NASA SpacePlace</imgcredit></small>
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-
-    <table>
-        <tr>
-            <td style="width: 10%;"><img src="pics/jupyter_logo.png" height="100" style="vertical-align: top;"></td>
-            <td><div style="text-align: justify;">
-                <em>
-                    "The <a href="https://jupyter.org/">Jupyter Notebook</a> is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more."
-                </em>
-            </div></td>
-        </tr>
-    </table>
-    
-    
-    <img src="pics/handson_jupyterpreview.png" width="600">
-    <br>
-    <small><imgcredit>Jupyter.org</imgcredit></small>
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-
-    <h3>Jupyter notebooks:</h3>
-    <ul>
-        <li>Can be installed (amongst other methods) with <code>conda</code> and <code>pip</code></li>
-        <pre>
-            <code data-trim data-line-numbers>
-                conda install -c conda-forge notebook
-                pip install notebook
-            </code>
-        </pre>
-        <li>Can work with kernels for Python, R, Octave, Julia and many more!</li>
-        <li>Form part of the bigger Jupyter ecosystem (including <a href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> and <a href="https://jupyterhub.readthedocs.io/en/stable/">JupyterHub</a>)</li>
-        <li>If on a public repository, can be viewed statically with <a href="https://nbviewer.jupyter.org/">nbviewer</a></li>
-        <li><strong>If on Binder, can be interacted with and edited in the cloud</strong></li>
-    </ul>
-
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-    This is what you have achieved!
-    <br>
-    <img src="pics/handson_binder_comic.png" width="1000">
-    <br>
-    <small><imgcredit>Juliette Taka, Logilab and the OpenDreamKit project</imgcredit></small>
-</section>
-
-<section>
-    <h2>STEP 4: Interplanetary sci-comm</h2>
-    "Galaxy brain" update:
-    <br><br>
-    <img src="pics/handson_galaxy_brain4.jpeg">
-</section>
-
-<section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <div style="text-align: justify;">
-        In many cases we will work with large datasets and multiple analysis pipelines will
-        form part of the full research pipeline,
-        each with their own list of software and environment requirements.
-        Managing the full reproducibility of such workflows
-        can be challenging (or impossible) without the right tools that allow:
-        <br>
-    </div>
+    <h2>Agenda</h2>
     <ol>
-        <li>Data version control</li>
-        <li>Provenance capture</li>
+        <li>Context</li>
+        <li>Practical aspects</li>
+        <li>Get cracking!</li>
     </ol>
-
-    <br><br>
-
-    <img src="pics/datalad_logo_wide.svg">
-
 </section>
 
+
 <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box1.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box2.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box3.svg" alt="">
-  </section>
+    <h2>1. The Context</h2>
+    <div style="margin-top:0.5em;">
+        <table style="border: none;" table-layout: fixed;>
+            <tr>
+                <td width="50%"><img style="height:500px; margin-top: 0; margin-right:1px;vertical-align:middle;" data-src="pics/comic_box1.svg" /></td>
+                <td>
+                    <ul style="vertical-align:middle;">
+                        <li class="fragment fade-in-then-semi-out">Alice is a PhD student in a research team.</li>
+                        <li class="fragment fade-in-then-semi-out">She works on a fairly typical research project: data collection & processing.</li>
+                        <li class="fragment fade-in-then-semi-out">First sample → final result = cumulative process</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h3 class="fragment fade-in-then-semi-out">How does Alice go about her daily job?*</h3>
+</section>
 
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
 
-    <img src="pics/datalad_logo_wide.svg">
+<section>
+    <h2>1. The Context</h2>
     <ul>
-        <li>A command-line tool (and GUI!) with a Python API</li>
-        <li>Builds on top of <a href="https://git-scm.com/" target="_blank">Git</a>
-            and <a href="https://git-annex.branchable.com/" target="_blank">Git-annex</a></li>
-        <dt><li>Allows...</li></dt>
-        <dd>... version-controlling arbitrarily large content,</dd>
-        <dd>... easily sharing and obtaining data (note: no data hosting!),</dd>
-        <dd>... (computationally) reproducible data analysis,
-        <dd>... and <i>much</i> more </dd>
-        <li>Completely domain-agnostic</li>
-        <li>Available for all major operating systems (Linux, macOS/OSX, Windows):
-            <a href="http://handbook.datalad.org/en/latest/intro/installation.html">installation instructions</a>
+        <li class="fragment fade-in-then-semi-out">When working locally, Alice likes to have an automated record of:
+            <ul>
+                <li>when a given file was last changed</li>
+                <li>where it came from</li>
+                <li>what input files were used to generate a given output</li>
+                <li>why some things were done.</li>
+            </ul>
         </li>
-        <li>Detailed documentation: <a href="http://handbook.datalad.org/en/latest/index.html">DataLad Handbook</a></li>
-            <br>
+        <li class="fragment fade-in-then-semi-out">Even if she doesn't share her work, this is essential for her future self</li>
+        <li class="fragment fade-in-then-semi-out">Project is exploratory: often large changes to her analysis scripts</li>
+        <li class="fragment fade-in-then-semi-out">She enjoys the comfort of being able to return to a previously recorded state</li>
     </ul>
-
-</section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box4.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box5.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box6.svg" alt="">
-  </section>
-  
-  <section>
-    <img src="pics/comic_box7.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box8.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box9.svg" alt="">
-  </section>
-  
-  <section>
-    <h2>STEP 5: Reproducible data management</h2>
-    <img src="pics/comic_box10.svg" alt="">
-  </section>
-
-<section>
-    <h2>STEP 5: Reproducible data management</h2>
-    "Galaxy brain" update:
     <br><br>
-    <img src="pics/handson_galaxy_brain.jpeg">
+    <h3 class="fragment fade-in-then-semi-out">This is: *local version control*</h3>
 </section>
 
 
 <section>
-    <h2>So...<br>now you might feel like this</h2>
-    <iframe src="https://giphy.com/embed/75ZaxapnyMp2w" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/75ZaxapnyMp2w">via GIPHY</a></p>
-</section>
-
-<section>
-    <h2>But that is why brainhacks exist!</h2>
+    <h2>1. The Context</h2>
     <ul>
-        <li class="fragment fade-in">Learn</li>
-        <li class="fragment fade-in">Collaborate</li>
-        <li class="fragment fade-in">Make new friends and colleagues</li>
-        <li class="fragment fade-in">Form a community</li>
-        <li class="fragment fade-in">Improve science!</li>
+        <li class="fragment fade-in-then-semi-out" data-fragment-index="1">Alice's work is not confined to a single computer:
+            <ul>
+                <li>laptop / desktop / remote server</li>
+                <li>there should be an automatic+efficient way to synchronize</li>
+            </ul>
+        </li>
+        <li class="fragment fade-in-then-semi-out" data-fragment-index="2">Parts of the data are collected or analysed by colleagues from another team. This requires:
+            <ul>
+                <li>distributed synchronization with centralized storage</li>
+                <li>preservation of origin & authorship of changes</li>
+                <li>effective combination of simultaneous contributions</li>
+            </ul>
+        </li>
+    </ul>
+    <br><br>
+    <h3 class="fragment fade-in-then-semi-out" data-fragment-index="3">This is: *distributed version control*</h3>
+</section>
+
+
+<section>
+    <h2>1. The Context</h2>
+    <ul>
+        <li class="fragment fade-in-then-semi-out">Alice applies local version control for her own work</li>
+        <li class="fragment fade-in-then-semi-out">She also applies distributed version control when working with colleagues and collaborators</li>
+
+        <li class="fragment fade-in-then-semi-out">She often needs to work on a subset of data at any given time:
+            <ul>
+                <li>all files are kept on a server</li>
+                <li>a few files are rotated into and out of her laptop</li>
+            </ul>
+        </li>
+        <li class="fragment fade-in-then-semi-out">Alice needs to publish the data at project's end:
+            <ul>
+                <li>raw data / outputs / both</li>
+                <li>completely or selectively</li>
+            </ul>
+        </li>
+    </ul>
+    <br><br>
+    <h3 class="fragment fade-in-then-semi-out">This is: *data management (with DataLad 😀)*</h3>
+</section>
+
+
+<section>
+    <h2>1. The Context</h2>
+    <img src="pics/comic_box3.svg" alt="">
+</section>
+
+
+<section>
+    <h2>2. Practical aspects</h2>
+    <br>
+
+    <ul>
+        <li class="fragment">Information:<br>
+            &nbsp;&nbsp;&nbsp;- <a href="https://github.com/jsheunis/brainhack-nordic-datalad">github.com/jsheunis/brainhack-nordic-datalad</a>
+        </li>
+        <li class="fragment">Slides:<br>
+            &nbsp;&nbsp;&nbsp;- <a href="https://jsheunis.github.io/brainhack-nordic-datalad">jsheunis.github.io/brainhack-nordic-datalad</a>
+        </li>
+        <li class="fragment">Cloud-computing environment:<br>
+            &nbsp;&nbsp;&nbsp;- <a href="https://datalad-hub.inm7.de">datalad-hub.inm7.de</a>
+        </li>
+        <li class="fragment">Format:
+            <ul>
+                <li>Hands-on</li>
+                <li>Work on your own machine in the browser</li>
+                <li>Step-by-step code execution</li>
+                <li>Ask questions any time!</li>
+            </ul>
+        </li>
+        <li class="fragment">Timing:
+            <ul>
+                <li>2 hrs (including intro)</li>
+                <li>Short break at 1hr</li>
+            </ul>
+        </li>
     </ul>
 </section>
 
+
+<section>
+    <h2>2. Practical aspects</h2>
+    <img width="200" src="pics/jupyter_logo.png" alt="jupyterlogo"><br>
+    <ul>
+        <li>We'll work in the browser on a cloud server with JupyterHub</li>
+        <li class="fragment">We have pre-installed DataLad and other requirements</li>
+        <li class="fragment">We will work via the terminal</li>
+        <li class="fragment">Log in using the email address with which you registered for the brainhack</li>
+        <li class="fragment">Select a password when logging in for the first time; remember it!</li>
+    </ul>
+</section>
+
+
+<section>
+    <h2>3. So let's do this!</h2>
+    <br><br>
+    <iframe src="https://giphy.com/embed/bpSJSlawHPChr9oOq4" width="720" height="405" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>datalad</h3>
+
+    Check the installed version:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad --version
+        </code>
+        <p id="displayArea"></p>
+    </pre>
+
+    <div class="fragment">
+        For help on using DataLad from the command line:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad --help
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        For extensive info about the installed package, its dependencies, and extensions, use <code>wtf</code>:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad wtf
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>git identity</h3>
+    Check git identity:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            git config --get user.name
+            git config --get user.email
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Configure git identity:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                git config --global user.name "Stephan Heunis"
+                git config --global user.email "s.heunis@fz-juelich.de"
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>Using datalad via its Python API</h3>
+    Open a Python environment:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            ipython
+        </code>
+    </pre>
+    <div class="fragment">
+        Import and start using:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-python" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                import datalad.api as dl
+                dl.create(path='mydataset')
+            </code>
+        </pre>
+    </div>
+    <div class="fragment">
+        Exit the Python environment:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-python" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                exit
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+    <h3 style="text-align: left;">Datalad datasets...</h3>
+    <img src="pics/comic_box4.svg" alt="">
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Datalad datasets</h3>
+    Create a dataset (here, with the <code>text2git</code> config):
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad create -c text2git bids-data
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Let's have a look inside. Navigate using <code>cd</code> (change directory):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                cd bids-data
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        List the directory content, including hidden files, with <code>ls</code>:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                ls -la .
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 style="text-align: left;">Version control...</h3>
+    <img src="pics/comic_box5.svg" alt="">
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Version control</h3>
+    Let's add some Markdown text to a README file in the dataset
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            echo "# A BIDS structured dataset for my input data" > README.md
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Now we can check the <code>status</code> of the dataset:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad status
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        We can save the state with <code>save</code>
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad save -m "Add a short README"
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Further modifications:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                echo "Contains functional task data of one subject" >> README.md
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Save again:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad save -m "Add information on the dataset contents to the README"
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Now, let's check the dataset history:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                git log
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 style="text-align: left;">Data consumption & transport...</h3>
+    <img src="pics/comic_box6_consumption.svg" alt="">
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Data consumption & transport...</h3>
+
+    Install a dataset from remote URL (or local path) using <code>clone</code>:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            cd ../
+            datalad clone https://github.com/psychoinformatics-de/studyforrest-data-phase2.git
+        </code>
+    </pre>
+    <div class="fragment">
+        We can now view the cloned dataset's file tree:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                cd studyforrest-data-phase2
+                ls
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Let's check the dataset size (i.e. git repository):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                du -sh # this will print the size of the directory in human readable sizes
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Let's check the <em>actual</em> dataset size (i.e. git repository + annexed content):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad status --annex
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        The DataLad dataset is just the git repository,
+        i.e. the metadata of all files in the dataset,
+        including the content of all files comitted to git.
+        The actual file content in the annex can be retrieved as needed.
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Data consumption & transport</h3>
+
+    We can retrieve actual file content with <code>get</code> (here, multiple files):
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            # get all files of sub-01 for all functional runs of the localizer task
+            datalad get sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-*.nii.gz
+        </code>
+    </pre>
+
+    <div class="fragment">
+        If we don't need a file locally anymore, we can <code>drop</code> it:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                # drop a specific file
+                datalad drop sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        And it's no problem if you need that exact file again, just <code>get</code>it:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                # get a specific file
+                datalad drop sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Therefore: no need to store all files locally.
+        Data just needs to be available from at least one location,
+        then you can <code>get</code> what you want when you need it,
+        and <code>drop</code> the rest.
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>Dataset nesting...</h3>
+
+    Datasets can be nested in superdataset-subdataset hierarchies:
+
+    <img src="pics/linkage_subds.png" alt="">
+    
+    <ul class="fragment">
+        <li>Helps with scaling (see e.g. the <a href="https://github.com/datalad-datasets/human-connectome-project-openaccess">Human Connectome Project dataset</a> )</li>
+        <li>Version control tools struggle with >100k files</li>
+        <li>Modular units improves intuitive structure and reuse potential</li>
+        <li>Versioned linkage of inputs for reproducibility</li>
+    </ul>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Dataset nesting</h3>
+
+    Let's make a nest! First we navigate into the top-level dataset:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            cd ../bids-data
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Then we clone the input dataset into a specific location in the file tree of the existing dataset, making it a <em>sub</em>dataset (using the <code>-d/--dataset</code> flag):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad clone --dataset . \
+                https://github.com/datalad/example-dicom-functional.git  \
+                inputs/rawdata
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Similarly, we can clone the analysis container (actually, a set of containers from <a href="https://www.repronim.org/">ReproNim</a>) as a subdataset:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad clone -d . \
+                https://github.com/ReproNim/containers.git \
+                code/containers
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        Let's see what changed in the dataset, using the <code>subdatasets</code> command:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad subdatasets
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 style="text-align: left;">Computationally reproducible execution...</h3>
+    <img src="pics/comic_box7.svg" width="65%" alt="">
+    <ul>
+        <li class="fragment fade-in-then-semi-out">which script/pipeline version</li>
+        <li class="fragment fade-in-then-semi-out">was run on which version of the data</li>
+        <li class="fragment fade-in-then-semi-out">to produce which version of the results?</li>
+    </ul>
+</section>
+
+<section style="text-align: left;">
+    <h3>...Computationally reproducible execution...</h3>
+
+    <ul>
+        <li class="fragment fade-in-then-semi-out">The <code>datalad run</code> can run any command in a way that links the command or script to the results it produces and the data it was computed from</li>
+        <li class="fragment fade-in-then-semi-out">The <code>datalad rerun</code> can take this recorded provenance and recompute the command</li>
+        <li class="fragment fade-in-then-semi-out">The <code>datalad containers-run</code> (from the extension) can capture software provenance in the form of software containers in addition to the provenance that datalad run captures</li>
+    </ul>
+    <br><br>
+
+    <div class="fragment">
+        With the <code>datalad-container</code> extension, we can inspect the list of registered containers (recursively):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad containers-list --recursive
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        We'll use the <code>repronim-reproin</code> container for dicom conversion.
+    </div>
+
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Computationally reproducible execution</h3>
+
+    Now, let's try out the <code>containers-run</code> command:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad containers-run -m "Convert subject 02 to BIDS" \
+            --container-name code/containers/repronim-reproin \
+            --input inputs/rawdata/dicoms \
+            --output sub-02 \
+            "-f reproin -s 02 --bids -l '' --minmeta -o . --files inputs/rawdata/dicoms"
+        </code>
+    </pre>
+    <div class="fragment">
+        What changed after the <code>containers-run</code> command has completed?
+        <br>
+        We can use <code>datalad diff</code> (based on <code>git diff</code>):
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad diff -f HEAD~1
+            </code>
+        </pre>    
+    </div>
+
+    <div class="fragment">
+        We see that some files were added to the dataset!
+        <br>
+        And we have a complete provenance record as part of the git history:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                git log -n 1
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 style="text-align: left;">Publishing datasets...</h3>
+    <div style="margin-top:1em;">
+        <table style="border: none;">
+            <tr>
+                <td><img style="width: 800px; margin-right:1px;margin-bottom:10px;vertical-align:middle;" data-src="pics/comic_box6_publishing.svg" /></td>
+                <td><img style="width: 1000px; margin-right:1px;margin-bottom:10px;vertical-align:middle;" data-src="pics/comic_box9.svg" /></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="fragment">We will use GIN: <a href="https://gin.g-node.org/">gin.g-node.org/</a>:</div>
+    <br>
+    <ol>
+        <li class="fragment">Create a GIN user account and log in</li>
+        <li class="fragment"><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux">Create</a> and <a href="https://handbook.datalad.org/en/latest/basics/101-139-gin.html#prerequisites">upload</a> an SSH key to GIN</li>
+        <li class="fragment">Create a new <em><strong>empty</strong></em> repository named "bids-data" and copy it's SSH URL</li>
+    </ol>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Publishing datasets</h3>
+
+    DataLad allows you to add repositories as <code>siblings</code> to a dataset, to which data can be published with <code>push</code>.
+    <pre style="margin-left: 0;">
+        <code data-noescape data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad siblings add -d . \
+            --name gin \
+            --url git@gin.g-node.org:/<your-gin-username>/bids-data.git # this is your ssh url
+        </code>
+    </pre>
+
+    <div class="fragment">
+        You can verify the dataset's siblings with the <code>siblings</code> command:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad siblings
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        And we can push our complete dataset (git repository and annex) to GIN:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad push --to gin
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>Using published data...</h3>
+
+    Let's use our published data in a new analysis, to demonstrate reusability and the usefulness of modularity.
+    <br><br>
+    First let's create a new dataset using the <a href="https://handbook.datalad.org/en/latest/basics/101-127-yoda.html#yoda">yoda principles</a>:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            cd ../
+            datalad create -c yoda myanalysis
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Then we can clone our GIN-published dataset as a subdataset <br>
+        (<strong>NB:</strong> use the browser URL without ".git" suffix):
+        <pre style="margin-left: 0;">
+            <code data-noescape data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                cd myanalysis
+                datalad clone -d . \
+                https://gin.g-node.org/<your-gin-username>/bids-data \
+                input
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Using published data...</h3>
+
+    We have data, and now we need an analysis script.
+    We will use DataLad's <code>download-url</code> which gets the content of a script and registers its source:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad download-url -m "Download code for brain masking from Github" \
+            -O code/get_brainmask.py \
+            https://raw.githubusercontent.com/datalad-handbook/resources/master/get_brainmask.py
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Now we have data and an analysis script, and we still need the correct software environment within which the run the analysis.
+        We will again use the <code>datalad-container</code> extension to register a container to the new dataset:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad containers-add nilearn \
+                --url shub://adswa/nilearn-container:latest \
+                --call-fmt "singularity exec {img} {cmd}"
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section style="text-align: left;">
+    <h3>...Using published data</h3>
+
+    Finally, we can run the analysis:
+    <pre style="margin-left: 0;">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            datalad containers-run -m "Compute brain mask" \
+            -n nilearn \
+            --input input/sub-02/func/sub-02_task-oneback_run-01_bold.nii.gz \
+            --output figures/ \
+            --output "sub-02*" \
+            "python code/get_brainmask.py"
+        </code>
+    </pre>
+
+    <div class="fragment">
+        Afterwards, we can inspect how specific files came to be, e.g.:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                git log sub-02_brain-mask.nii.gz
+            </code>
+        </pre>
+    </div>
+
+    <div class="fragment">
+        And since the run-record is part of the dataset's git history, we know the provenance.
+        DataLad can use this machine-readable information to <em>rerun</em> the analysis without you having to specify any information again:
+        <pre style="margin-left: 0;">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+                datalad rerun
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+<section>
+    <h3>The end! For now...</h3>
+
+    <img src="pics/comic_box10.svg" alt="">
+</section>
+<!-- 
+
+<section>
+    <h2>2. DataLad: an overview</h2>
+    <img src="pics/comic_box8.svg" alt="">
+</section>
+
+<section>
+    <h2>2. DataLad: an overview</h2>
+    <img src="pics/comic_box9.svg" alt="">
+</section>
+
+<section>
+    <h2>2. DataLad: an overview</h2>
+    <img src="pics/comic_box10.svg" alt="">
+</section> -->
 
 
 
@@ -1068,6 +836,9 @@
 <script src="reveal.js/plugin/notes/notes.js"></script>
 <script src="reveal.js/plugin/markdown/markdown.js"></script>
 <script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script src="custom_functions.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="reveal.js/plugin/copycode/copycode.js"></script> -->
 <script>
     // More info about initialization & config:
     // - https://revealjs.com/initialization/
@@ -1088,7 +859,7 @@
         controls: true,
         progress: true,
         history: true,
-        center: true,
+        center: false,
         slideNumber: 'c',
         pdfSeparateFragments: false,
         pdfMaxPagesPerSlide: 1,
