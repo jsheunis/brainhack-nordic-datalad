@@ -1,16 +1,16 @@
 # BrainHack Nordic 2022 - DataLad Workshop
 
-Welcome to the code and content repository of the hands-on workshop: ***Research Data Management with DataLad***, part of the TrainTrack of the [BrainHack Nordic 2022](https://ohbm.github.io/hackathon2021/traintrack/) event.
+Welcome to the code and content repository of the hands-on workshop: ***Research Data Management with [DataLad](https://www.datalad.org/)***, part of the TrainTrack of the [BrainHack Nordic 2022](https://ohbm.github.io/hackathon2021/traintrack/) event.
 
----
-### Presenters:
-[Stephan Heunis](https://github.com/jsheunis)
+### Presenter:
+[Stephan Heunis](https://jsheunis.github.io/)
+- Research Software Engineer at the [Psychoinformatics lab](https://www.psychoinformatics.de/),
+Institute of Neuroscience and Medicine, Brain &amp; Behavior (INM-7), Germany
 
----
 
 ## Summary
 
-Learn how to use the free and open source tool DataLad to do continuous Research Data Management throughout the lifecycle of a research project. Topics include:
+Learn how to use the free and open source tool [DataLad](https://www.datalad.org/) to do continuous Research Data Management throughout the lifecycle of a research project. Topics include:
 
 - DataLad datasets
 - Version control
@@ -24,7 +24,12 @@ Learn how to use the free and open source tool DataLad to do continuous Research
 
 Slides: [brainhack-nordic-datalad](https://jsheunis.github.io/brainhack-nordic-datalad)
 
-The sessions follows the slides step by step.
+The session follows the slides step by step.
+
+The workshop's content is largely based on:
+- The [Research Data Managment with DataLad](https://psychoinformatics-de.github.io/rdm-course/) course, developed by the Psychoinformatics team (with special thanks to [Michał Szczepanik](https://github.com/mslw))
+- The [Introduction to DataLad for Yale](https://handbook.datalad.org/en/latest/code_from_chapters/yale.html) workshop, by [Adina Wagner](https://github.com/adswa)
+
 
 ## Cloud-compute environment
 
@@ -57,44 +62,44 @@ However, if you are confident that you can set up your machine with DataLad succ
 
 ## Scenario: the life of digital objects
 
-- Alice is a PhD student.
-- She works on a fairly typical research project: data collection & and processing.
-  - Exact kind of data not relevant for us
-  - first sample → final result: cumulative process
+Alice is a PhD student.
 
-#+REVEAL:split
+She works on a fairly typical research project: neuroimaging data collection and processing.
+- The exact kind of data is actually not **that** relevant
+- From the first sample to the final result: it is a cumulative process
 
-- When working locally, Alice likes to have an automated record of:
-  - when a given file was last changed
-  - where it came from
-  - what input files were used to generate a given output
-  - why some things were done.
-- Even without sharing, essential for her future self
-- Project is exploratory: often large changes to her analysis scripts
-- Enjoys comfort of being able to return to a previously recorded state
+When working locally, Alice likes to have an automated record of:
+- when a given file was last changed
+- where it came from
+- what input files were used to generate a given output
+- why some things were done.
 
-This is *local* version control.
+Even without sharing, all of these records are essential for her future self, because:
+- the project is exploratory; there are often large changes to her analysis scripts
+- she enjoys the comfort of being able to return to a previously recorded state
 
-#+REVEAL:split
+All of the above is ***local* version control**.
 
-- Alice's work not confined to a single computer
-  - laptop / desktop / remote server
-  - automatic and efficient way to synchronise
-- Some data collected / analysed by colleagues from other team
-  - all synchronize with centralized storage
-  - preserving origin & authorship
-  - combining simultaneous contributions
+Alice's work not confined to a single computer. She uses:
+- laptop
+- desktop
+- remote server
 
-This is *distributed* version control.
+She therefore needs and has an automatic and efficient way to synchronise data.
 
-#+REVEAL:split
+Also, some of the data are collected and analysed by colleagues from another team:
+- they all work together on synchronized data with centralized storage
+- their system preserves the origin & authorship of changes
+- they can easily combine simultaneous contributions without conflicts
 
-- Needs to work on a subset of data at a given time
-  - all files are kept on a server
-  - few files are rotated into and out of the laptop
-- Needs to publish data at project's end
-  - raw data / outputs / both
-  - completely or selectively
+This is ***distributed* version control**.
 
-... all these were typical data management issues which we will touch upon during this workshop,
-using DataLad as our primary tool.
+When Alice needs to work on a subset of data at a given time:
+- all her files are kept on a server
+- only a few files are rotated into and out of the laptop/desktop/server as/when she needs them
+
+At the end of the projet, Alice needs to publish all project data:
+- this could be raw data or outputs or both
+- she needs to publish data completely or selectively, depending on data use restrictions
+
+All of the activities and processes mentioned above are typical data management issues which we will touch upon during this workshop, using DataLad as our primary tool.
