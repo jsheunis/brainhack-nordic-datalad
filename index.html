@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title> Brainhack Kraków </title>
+  <title> Brainhack Nordic 2022 </title>
   <meta name="description" content=" incf-2022-lightning-jsheunis ">
   <meta name="author" content=" Stephan Heunis ">
 
@@ -448,7 +448,8 @@
     <pre style="margin-left: 0;">
         <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
             cd ../
-            datalad clone https://github.com/psychoinformatics-de/studyforrest-data-phase2.git
+            datalad clone \
+            https://github.com/psychoinformatics-de/studyforrest-data-phase2.git
         </code>
     </pre>
     <div class="fragment">
@@ -495,7 +496,8 @@
     <pre style="margin-left: 0;">
         <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
             # get all files of sub-01 for all functional runs of the localizer task
-            datalad get sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-*.nii.gz
+            datalad get \
+            sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-*.nii.gz
         </code>
     </pre>
 
@@ -504,7 +506,8 @@
         <pre style="margin-left: 0;">
             <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
                 # drop a specific file
-                datalad drop sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
+                datalad drop \
+                sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
             </code>
         </pre>
     </div>
@@ -514,7 +517,8 @@
         <pre style="margin-left: 0;">
             <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
                 # get a specific file
-                datalad drop sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
+                datalad drop \
+                sub-01/ses-localizer/func/sub-01_ses-localizer_task-objectcategories_run-4_bold.nii.gz
             </code>
         </pre>
     </div>
@@ -671,7 +675,7 @@
         </table>
     </div>
     <br>
-    <div class="fragment">We will use GIN: <a href="https://gin.g-node.org/">gin.g-node.org/</a>:</div>
+    <div class="fragment">We will use GIN: <a href="https://gin.g-node.org/">gin.g-node.org</a>:</div>
     <br>
     <ol>
         <li class="fragment">Create a GIN user account and log in</li>
@@ -686,10 +690,10 @@
 
     DataLad allows you to add repositories as <code>siblings</code> to a dataset, to which data can be published with <code>push</code>.
     <pre style="margin-left: 0;">
-        <code data-noescape data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+        <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
             datalad siblings add -d . \
             --name gin \
-            --url git@gin.g-node.org:/<your-gin-username>/bids-data.git # this is your ssh url
+            --url git@gin.g-node.org:/your-gin-username/bids-data.git
         </code>
     </pre>
 
@@ -730,10 +734,10 @@
         Then we can clone our GIN-published dataset as a subdataset <br>
         (<strong>NB:</strong> use the browser URL without ".git" suffix):
         <pre style="margin-left: 0;">
-            <code data-noescape data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
+            <code data-trim class="language-bash" onmousemove="showHover(event)" onmousedown="clickCopy(event)" onmouseleave="leaveElement(event)">
                 cd myanalysis
                 datalad clone -d . \
-                https://gin.g-node.org/<your-gin-username>/bids-data \
+                https://gin.g-node.org/your-gin-username/bids-data \
                 input
             </code>
         </pre>
